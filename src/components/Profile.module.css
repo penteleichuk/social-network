@@ -1,0 +1,13 @@
+
+.content {
+    grid-area: c;
+    background: azure;
+}
+
+.item {
+    color: #fff;
+}
+
+.posts {
+
+}
