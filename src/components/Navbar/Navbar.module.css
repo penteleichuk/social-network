@@ -4,9 +4,15 @@
 }
 
 .item {
-    color: #fff;
+    font-weight: bold;
 }
 
-.item.active {
-    color: #fcc;
+.link {
+    color: #fff;
+    text-decoration: none;
+}
+
+.active {
+    color: #fff;
+    background: #0000FF;
 }
