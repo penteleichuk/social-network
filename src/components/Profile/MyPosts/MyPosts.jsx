@@ -1,12 +1,7 @@
 import style from './MyPosts.module.css'
 import Post from "./Post/Post";
 
-const MyPosts = () => {
-
-    const postsData = [
-        {id: 1, message: 'Hi, how are you ?', likesCount: 20},
-        {id: 2, message: 'It\'s my first post', likesCount: 12}
-    ];
+const MyPosts = ({postsData, ...props}) => {
 
     return (
         <div className={style.postsBlock}>
