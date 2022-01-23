@@ -1,6 +1,6 @@
 import style from './Post.module.css'
 
-const Post = (props) => {
+export const Post = (props) => {
     return (
         <div className={style.item}>
             <img
@@ -13,5 +13,3 @@ const Post = (props) => {
         </div>
     )
 }
-
-export default Post;

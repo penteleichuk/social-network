@@ -1,5 +1,5 @@
 import style from './MyPosts.module.css'
-import Post from "./Post/Post";
+import {Post} from "./Post/Post";
 import {useRef} from "react";
 
 const MyPosts = (props) => {

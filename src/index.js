@@ -2,9 +2,9 @@ import ReactDOM from "react-dom";
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
-import {Provider} from "./StoreContext";
 import {store} from "./redux/redux-store";
 import './index.css';
+import {Provider} from "react-redux";
 
 const renderEntireTree = () => {
     ReactDOM.render(
