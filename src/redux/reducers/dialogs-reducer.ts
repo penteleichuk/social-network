@@ -1,7 +1,22 @@
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
-const SEND_MESSAGE = 'SEND-MESSAGE';
+import {DialogsType} from "../../components/Dialogs/DialogsContainer";
 
-const initialState = {
+// Const action
+const SEND_MESSAGE = 'SEND-MESSAGE';
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
+
+// Action type
+type SendMessageActionType = {
+    type: typeof SEND_MESSAGE,
+}
+type UpdateNewMessageBodyActionType = {
+    type: typeof UPDATE_NEW_MESSAGE_BODY,
+    body: string,
+}
+type ActionsType = SendMessageActionType | UpdateNewMessageBodyActionType;
+
+// Init
+type InitialStateType = DialogsType;
+const initialState: InitialStateType = {
     messages: [
         {id: 1, message: 'Hi'},
         {id: 2, message: 'How is your samurai'},
@@ -20,8 +35,8 @@ const initialState = {
     newMessageBody: ""
 }
 
-export const dialogsReducer = (state = initialState, action) => {
-
+// Reducer
+export const dialogsReducer = (state = initialState, action: ActionsType) => {
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY: {
             return {
@@ -44,5 +59,6 @@ export const dialogsReducer = (state = initialState, action) => {
     }
 }
 
+// Action creator
 export const sendMessageCreator = () => ({type: SEND_MESSAGE})
-export const UpdateNewMessageBodyCreator = (body) => ({type: UPDATE_NEW_MESSAGE_BODY, body: body})
+export const UpdateNewMessageBodyCreator = (body: string) => ({type: UPDATE_NEW_MESSAGE_BODY, body})

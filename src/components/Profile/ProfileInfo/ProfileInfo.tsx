@@ -1,6 +1,6 @@
 import style from './ProfileInfo.module.css';
 
-const ProfileInfo = () => {
+export const ProfileInfo = () => {
     return (
         <>
             <div>
@@ -12,5 +12,3 @@ const ProfileInfo = () => {
         </>
     )
 }
-
-export default ProfileInfo;

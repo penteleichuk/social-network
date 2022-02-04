@@ -1,6 +1,12 @@
 import style from './Post.module.css'
 
-export const Post = (props) => {
+export type PostType = {
+    id?: number
+    message: string
+    likesCount: number
+}
+
+export const Post = (props: PostType) => {
     return (
         <div className={style.item}>
             <img

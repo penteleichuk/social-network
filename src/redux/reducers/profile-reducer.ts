@@ -1,7 +1,22 @@
+import {MyPostType} from "../../components/Profile/MyPosts/MyPostsContainer";
+
+// Const action
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
-const initialState = {
+// Action type
+type AddPostActionType = {
+    type: typeof ADD_POST
+}
+type UpdateNewPostTextActionType = {
+    type: typeof UPDATE_NEW_POST_TEXT
+    newText: string
+}
+type ActionsType = AddPostActionType | UpdateNewPostTextActionType;
+
+// Init
+type initialStateType = MyPostType
+const initialState: initialStateType = {
     posts: [
         {id: 1, message: 'Hi, how are you ?', likesCount: 20},
         {id: 2, message: 'It\'s my first post', likesCount: 12}
@@ -9,7 +24,8 @@ const initialState = {
     newPostText: ''
 }
 
-export const profileReducer = (state = initialState, action) => {
+// Reducer
+export const profileReducer = (state: initialStateType = initialState, action: ActionsType): initialStateType => {
     switch (action.type) {
         case ADD_POST: {
             let newPost = {id: 5, message: state.newPostText, likesCount: 0};
@@ -24,5 +40,6 @@ export const profileReducer = (state = initialState, action) => {
     }
 }
 
+// Action creator
 export const addPostActionCreator = () => ({type: ADD_POST})
-export const UpdateNewPostActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
+export const UpdateNewPostActionCreator = (text: string) => ({type: UPDATE_NEW_POST_TEXT, newText: text})

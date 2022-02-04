@@ -1,6 +1,6 @@
 import style from './Header.module.css'
 
-const Header = () => {
+export const Header = () => {
     return (
         <header className={style.header}>
             <img src="https://brainrain.com.ua/wp-content/uploads/2016/11/intel-company-logo-png-hd-sk.png"
@@ -8,5 +8,3 @@ const Header = () => {
         </header>
     )
 }
-
-export default Header;

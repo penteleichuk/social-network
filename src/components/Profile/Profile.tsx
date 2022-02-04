@@ -1,7 +1,7 @@
-import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
-const Profile = () => {
+export const Profile = () => {
     return (
         <div>
             <ProfileInfo/>
@@ -9,5 +9,3 @@ const Profile = () => {
         </div>
     )
 }
-
-export default Profile;
