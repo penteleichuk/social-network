@@ -1,17 +1,77 @@
-.app-wrapper {
-    display: grid;
-    width: 1200px;
-    margin: auto;
-
-    grid-template-areas:
-            "h h"
-            "n c";
-    grid-template-rows: 60px 1fr;
-    grid-template-columns: 2fr 10fr;
-    /*grid-gap: 10px;*/
+body {
+    background: #303030;
+    text-decoration: none;
 }
 
-.app-wrapper-content {
-    grid-area: c;
-    background: azure;
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wrapper {
+    max-width: 900px;
+    width: 100%;
+}
+
+.header__wrapper {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.content {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    min-height: 230px;
+
+    margin: 15px 0;
+    padding: 3px;
+    background: #383838;
+
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.content > div {
+    width: 100%;
+}
+
+.textarea {
+    display: flex;
+    justify-content: space-between;
+}
+
+.textarea textarea {
+    border: 1px solid #383838;
+    outline: none;
+    border-radius: 4px;
+    background: #444;
+    padding: 5px 10px;
+    color: #ccc;
+    height: 16px;
+    max-height: 100px;
+    width: 100%;
+}
+
+.textarea button {
+    margin-left: 15px;
+    padding: 0 20px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    background: #4871a3;
+    color: #ccc;
+    font-size: .7rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.textarea button:hover {
+    cursor: pointer;
+    background: #63768d;
 }

@@ -1,10 +1,15 @@
-import style from './Header.module.css'
+import style from './Header.module.css';
+import '../../App.css';
+import {Navbar} from "../Navbar/Navbar";
+import Logo from '../../assets/images/logo.png'
 
 export const Header = () => {
     return (
         <header className={style.header}>
-            <img src="https://brainrain.com.ua/wp-content/uploads/2016/11/intel-company-logo-png-hd-sk.png"
-                 width={100} height={100} alt=""/>
+            <div className="wrapper header__wrapper">
+                <img src={Logo} alt=""/>
+                <Navbar/>
+            </div>
         </header>
     )
 }

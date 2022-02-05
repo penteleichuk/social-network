@@ -1,3 +1,16 @@
+.addPost {
+    background: #3c3c3c;
+    box-shadow: rgb(0 0 0 / 5%) 0px 6px 24px 0px, rgb(0 0 0 / 8%) 0px 0px 0px 1px;
+    padding: 10px 20px;
+}
+
+.addPost__title {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #8f8f8f;
+}
+
 .posts {
     margin-top: 10px;
 }

@@ -1,4 +1,7 @@
 import style from './Post.module.css'
+import {faHeart} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import authorImg from '../../../../assets/images/author.jpeg'
 
 export type PostType = {
     id?: number
@@ -9,12 +12,19 @@ export type PostType = {
 export const Post = (props: PostType) => {
     return (
         <div className={style.item}>
-            <img
-                src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-1024.png"
-                alt=""/>
-            {props.message}
-            <div>
-                <span>like {props.likesCount}</span>
+            <div className={style.itemImg}>
+                <img src={authorImg} alt=""/>
+            </div>
+            <div className={style.itemText}>
+                <div className={style.itemName}>
+                    Khaby Lame
+                </div>
+                <div className={style.itemMessage}>
+                    {props.message}
+                </div>
+            </div>
+            <div className={style.itemLike}>
+                <FontAwesomeIcon icon={faHeart}/> {props.likesCount}
             </div>
         </div>
     )

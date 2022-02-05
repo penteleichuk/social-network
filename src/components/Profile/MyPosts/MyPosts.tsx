@@ -12,10 +12,12 @@ export const MyPosts = (props: MyPostPropsType) => {
 
     return (
         <div className={style.postsBlock}>
-            My posts
-            <div>
-                <textarea onChange={onPostChange} value={props.newPostText}/>
-                <button onClick={onAddPost}>Add post</button>
+            <div className={style.addPost}>
+                <div className={style.addPost__title}>Write a new post...</div>
+                <div className="textarea">
+                    <textarea className={'textarea'} onChange={onPostChange} value={props.newPostText}/>
+                    <button onClick={onAddPost}>Add</button>
+                </div>
             </div>
             <div className={style.posts}>
                 {postsElements}

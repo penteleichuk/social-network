@@ -1,9 +1,43 @@
 .item {
-    color: #00F;
+    display: flex;
+    background: #3c3c3c;
+    box-shadow: rgb(0 0 0 / 5%) 0px 6px 24px 0px, rgb(0 0 0 / 8%) 0px 0px 0px 1px;
+    margin-top: 15px;
+    padding: 15px;
 }
 
-.item img {
-    width: 80px;
-    height: 80px;
+.itemImg img {
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
+    object-fit: cover;
+}
+
+.itemText {
+    color: #fff;
+    margin-left: 10px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+.itemName {
+    font-size: .9rem;
+    color: #ccc;
+}
+
+.itemLike {
+    align-self: flex-end;
+    background: #444;
+    padding: 5px 10px;
+    border-radius: 8px;
+    color: #e77f7f;
+    box-shadow: rgb(0 0 0 / 5%) 0px 6px 24px 0px, rgb(0 0 0 / 8%) 0px 0px 0px 1px;
+}
+
+.itemLike:hover {
+    cursor: pointer;
+    color: #d79f9f;
 }

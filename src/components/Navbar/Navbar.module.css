@@ -1,18 +1,26 @@
 .nav {
-    grid-area: n;
-    background: bisque;
+    display: flex;
 }
 
 .item {
+    font-size: .8rem;
     font-weight: bold;
+    margin-left: 20px;
+    letter-spacing: 1px;
 }
 
 .link {
-    color: #fff;
-    text-decoration: none;
+    color: #cbcbcb;
+}
+
+.link svg, .active svg {
+    margin-right: 4px;
+}
+
+.link:hover {
+    color: #78a2e3;
 }
 
 .active {
-    color: #fff;
-    background: #0000FF;
+    color: #a1bcd5;
 }

@@ -8,17 +8,31 @@
 }
 
 .dialog {
-
+    background: #444444;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
 }
 
-.dialog.active {
-    color: gold;
+.dialog a {
+    color: #a19b9b;
+}
+
+.dialog .active {
+    background: #4c87cb;
 }
 
 .messages {
-    padding: 10px;
+    display: flex;
+    padding: 15px;
+    flex-direction: column;
+    justify-content: space-between;
+    border-left: 1px solid #303030;
 }
 
 .message {
-
+    background: #363636;
+    margin-bottom: 10px;
+    padding: 10px 10px;
+    color: #ccc;
 }
