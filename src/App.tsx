@@ -12,6 +12,7 @@ export const App = () => {
             <div className="wrapper">
                 <div className="content">
                     <Routes>
+                        <Route path='/' element={<Profile/>}/>
                         <Route path='/dialogs' element={<DialogsContainer/>}/>
                         <Route path='/profile' element={<Profile/>}/>
                         <Route path='/users' element={<UsersContainer/>}/>
