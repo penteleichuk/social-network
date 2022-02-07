@@ -1,4 +1,4 @@
-import {MyPostType} from "../../components/Profile/MyPosts/MyPostsContainer";
+import {mapStateToPropsType} from "../../components/Profile/MyPosts/MyPostsContainer";
 
 // Const action
 const ADD_POST = 'ADD-POST';
@@ -15,7 +15,7 @@ type UpdateNewPostTextActionType = {
 type ActionsType = AddPostActionType | UpdateNewPostTextActionType;
 
 // Init
-type initialStateType = MyPostType
+type initialStateType = mapStateToPropsType
 const initialState: initialStateType = {
     posts: [
         {id: 1, message: 'Hi, how are you ?', likesCount: 20},

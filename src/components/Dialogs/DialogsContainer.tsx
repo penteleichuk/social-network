@@ -12,24 +12,24 @@ export type DialogsType = {
     dialogs: Array<DialogType>
     newMessageBody: string
 }
-export type DialogsPropsType = dispatchColBackPropsType & dispatchPropsType;
+export type DialogsPropsType = mapDispatchToPropsType & mapStateToPropsType;
 
 // Dispatch type
-type dispatchColBackPropsType = {
+type mapDispatchToPropsType = {
     updateNewMessageBody: (body: string) => void
     sendMessage: () => void
 }
-type dispatchPropsType = {
+type mapStateToPropsType = {
     dialogsPage: DialogsType
 }
 
 // Dispatch connect
-const dispatchProps = (state: AppStateType): dispatchPropsType => {
+const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         dialogsPage: state.dialogsPage,
     }
 }
-const dispatchColBack = (dispatch: Dispatch): dispatchColBackPropsType => {
+const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     return {
         updateNewMessageBody: (body: string) => {
             dispatch(UpdateNewMessageBodyCreator(body));
@@ -40,4 +40,4 @@ const dispatchColBack = (dispatch: Dispatch): dispatchColBackPropsType => {
     }
 }
 
-export const DialogsContainer = connect(dispatchProps, dispatchColBack)(Dialogs);
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);

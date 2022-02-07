@@ -6,30 +6,30 @@ import {AppStateType} from "../../../redux/redux-store";
 import {PostType} from "./Post/Post";
 
 // MyPosts type
-export type MyPostType = {
+export type mapStateToPropsType = {
     posts: Array<PostType>
     newPostText: string
 }
-export type MyPostPropsType = MyPostType & dispatchColBackType;
+export type MyPostPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
 // Dispatch type
-type dispatchColBackType = {
+type mapDispatchToPropsType = {
     addPost: () => void
     updateNewPostText: (text: string) => void
 }
 
 // Dispatch connect
-const dispatchProps = (state: AppStateType): MyPostType => {
+const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         posts: state.profilePage.posts,
         newPostText: state.profilePage.newPostText
     }
 }
-const dispatchColBack = (dispatch: Dispatch): dispatchColBackType => {
+const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     return {
         addPost: () => dispatch(addPostActionCreator()),
         updateNewPostText: (text: string) => dispatch(UpdateNewPostActionCreator(text)),
     }
 }
 
-export const MyPostsContainer = connect(dispatchProps, dispatchColBack)(MyPosts);
+export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);

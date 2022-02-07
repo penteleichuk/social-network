@@ -5,12 +5,12 @@ import {AppStateType} from "../../redux/redux-store";
 import { Dispatch } from "redux";
 
 // Dispatch type
-type dispatchColBackPropsType = {
+type mapDispatchToPropsType = {
     follow: (userId: number) => void
     unFollow: (userId: number) => void
     setUsers: (users: Array<UserType>) => void
 }
-type dispatchPropsType = initialStateType
+type mapStateToPropsType = initialStateType
 
 // User type
 type UserLocation = {
@@ -30,15 +30,15 @@ export type UserType = {
     followed?: boolean
     location?: UserLocation
 }
-export type UsersPropsType = dispatchColBackPropsType & dispatchPropsType
+export type UsersPropsType = mapDispatchToPropsType & mapStateToPropsType
 
 // Dispatch connect
-const dispatchProps = (state: AppStateType): dispatchPropsType => {
+const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         users: state.usersPage.users
     }
 }
-const dispatchColBack = (dispatch: Dispatch): dispatchColBackPropsType => {
+const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     return {
         follow: (userId: number) => {
             dispatch(followAC(userId))
@@ -52,4 +52,4 @@ const dispatchColBack = (dispatch: Dispatch): dispatchColBackPropsType => {
     }
 }
 
-export const UsersContainer = connect(dispatchProps, dispatchColBack)(Users);
+export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users);
