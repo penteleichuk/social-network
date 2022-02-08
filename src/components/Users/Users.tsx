@@ -1,22 +1,28 @@
-import axios from "axios";
-import {UsersPropsType} from "./UsersContainer";
-import userPhoto from "../../assets/images/user.png"
-import styles from './Users.module.css';
+import React from "react";
+import styles from "./Users.module.css";
+import userPhoto from "../../assets/images/user.png";
+import {UserType} from "./UsersContainer";
 
-export const Users = (props: UsersPropsType) => {
-    const getUsers = () => {
-        if (props.users.length === 0) {
-            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-                props.setUsers(response.data.items);
-            })
-        }
+type UsersPPropsType = {
+    totalUsersCount: number
+    pageSize: number
+    currentPage: number
+    onPageChanged: (pageNumber: number) => void
+    users: Array<UserType>
+    follow: (id: number) => void
+    unFollow: (id: number) => void
+}
+
+export const Users = (props: UsersPPropsType) => {
+    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+
+    const pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i);
     }
 
     return (
         <div className={styles.users}>
-            <div className={styles.usersButton}>
-                <button onClick={getUsers}>Get Users</button>
-            </div>
             <div className={styles.usersList}>
                 {
                     props.users.map(u =>
@@ -30,13 +36,20 @@ export const Users = (props: UsersPropsType) => {
                             </div>
                             <div className={styles.usersButtons}>
                                 {
-                                    u.followed ? <button onClick={() => {props.unFollow(u.id)}}>UnFollow</button>
-                                        : <button onClick={() => {props.follow(u.id)}}>Follow</button>
+                                    u.followed
+                                    ? <button onClick={() => {props.unFollow(u.id)}}>UnFollow</button>
+                                    : <button onClick={() => {props.follow(u.id)}}>Follow</button>
                                 }
                             </div>
                         </div>
                     )
                 }
+            </div>
+            <div className={styles.pagination}>
+                {pages.map((p, key) => {
+                    return <span key={key} className={props.currentPage === p ? styles.paginationActive : ''}
+                                 onClick={() => {props.onPageChanged(p)}}>{p}</span>
+                })}
             </div>
         </div>
     )
