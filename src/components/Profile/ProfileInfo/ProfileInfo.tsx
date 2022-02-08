@@ -1,7 +1,7 @@
 import style from './ProfileInfo.module.css';
 import defaultBG from '../../../assets/images/default-bg.jpg'
 import authorImg from '../../../assets/images/author.jpeg'
-import {Preloader} from "../../common/Preloader/Preloader";
+import {Preloader} from "../../Common/Preloader/Preloader";
 
 export const ProfileInfo = (props: any) => {
     if(!props.profile) {

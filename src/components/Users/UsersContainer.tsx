@@ -11,7 +11,7 @@ import {AppStateType} from "../../redux/redux-store";
 import React from "react";
 import axios from "axios";
 import {Users} from "./Users";
-import {Preloader} from "../common/Preloader/Preloader";
+import {Preloader} from "../Common/Preloader/Preloader";
 
 //
 class UsersContainer extends React.Component<any, mapStateToPropsType> {

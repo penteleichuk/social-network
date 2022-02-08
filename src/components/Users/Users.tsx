@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Users.module.css";
 import userPhoto from "../../assets/images/user.png";
 import {UserType} from "./UsersContainer";
-import {Pagination} from "../common/Pagination/Pagination";
+import {Pagination} from "../Common/Pagination/Pagination";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faUserCog} from "@fortawesome/free-solid-svg-icons";
 import {NavLink} from "react-router-dom";

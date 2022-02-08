@@ -2,8 +2,8 @@ import {Routes, Route} from "react-router-dom";
 import {Header} from "./components/Header/Header";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
-import "./App.css";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import "./App.css";
 
 export const App = () => {
     return (
