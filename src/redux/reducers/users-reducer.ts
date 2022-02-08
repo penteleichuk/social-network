@@ -93,9 +93,9 @@ export const usersReducer = (state:initialStateType = initialState, action: Acti
 }
 
 // Action creator
-export const followAC = (userID: number): FollowActionType => ({type: FOLLOW, userID});
-export const unFollowAC = (userID: number): UnFollowActionType => ({type: UNFOLLOW, userID});
-export const setUsersAC = (users: Array<UserType>): SetUsersType => ({type: SET_USERS, users});
-export const setCurrentPageAC = (pageNumber: number): setCurrentPageType => ({type: SET_CURRENT_PATE, pageNumber});
-export const setTotalUsersCountAC = (usersCount: number): setTotalUsersCountType => ({type: SET_TOTAL_USERS_COUNT, usersCount});
-export const setIsFetchingAC = (isFetching: boolean): setIsFetchingType => ({type: TOOGLE_IS_FETCHING, isFetching});
+export const follow = (userID: number): FollowActionType => ({type: FOLLOW, userID});
+export const unFollow = (userID: number): UnFollowActionType => ({type: UNFOLLOW, userID});
+export const setUsers = (users: Array<UserType>): SetUsersType => ({type: SET_USERS, users});
+export const setCurrentPage = (pageNumber: number): setCurrentPageType => ({type: SET_CURRENT_PATE, pageNumber});
+export const setTotalUsersCount = (usersCount: number): setTotalUsersCountType => ({type: SET_TOTAL_USERS_COUNT, usersCount});
+export const setIsFetching = (isFetching: boolean): setIsFetchingType => ({type: TOOGLE_IS_FETCHING, isFetching});
