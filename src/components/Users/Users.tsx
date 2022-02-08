@@ -2,6 +2,9 @@ import React from "react";
 import styles from "./Users.module.css";
 import userPhoto from "../../assets/images/user.png";
 import {UserType} from "./UsersContainer";
+import {Pagination} from "../common/Pagination/Pagination";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faUserCog} from "@fortawesome/free-solid-svg-icons";
 
 type UsersPPropsType = {
     totalUsersCount: number
@@ -23,6 +26,10 @@ export const Users = (props: UsersPPropsType) => {
 
     return (
         <div className={styles.users}>
+            <div className={styles.usersTitle}>
+                <FontAwesomeIcon icon={faUserCog}/>
+                Users list
+            </div>
             <div className={styles.usersList}>
                 {
                     props.users.map(u =>
@@ -32,7 +39,7 @@ export const Users = (props: UsersPPropsType) => {
                             </div>
                             <div className={styles.usersInfo}>
                                 <div className={styles.usersName}>{u.name}</div>
-                                <div className={styles.usersStatus}>{u.status}</div>
+                                {/*<div className={styles.usersStatus}>{u.status}</div>*/}
                             </div>
                             <div className={styles.usersButtons}>
                                 {
@@ -45,12 +52,7 @@ export const Users = (props: UsersPPropsType) => {
                     )
                 }
             </div>
-            <div className={styles.pagination}>
-                {pages.map((p, key) => {
-                    return <span key={key} className={props.currentPage === p ? styles.paginationActive : ''}
-                                 onClick={() => {props.onPageChanged(p)}}>{p}</span>
-                })}
-            </div>
+            <Pagination pages={pages} currentPage={props.currentPage} onPageChanged={props.onPageChanged}/>
         </div>
     )
 }

@@ -1,0 +1,19 @@
+.prelouder {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    color: #fff;
+    height: 100%;
+    background: rgba(54, 60, 69, 0.71);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+}
+
+.prelouderSpin {
+    margin-right: 10px;
+}

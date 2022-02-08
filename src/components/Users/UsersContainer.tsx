@@ -12,8 +12,7 @@ import { Dispatch } from "redux";
 import React from "react";
 import axios from "axios";
 import {Users} from "./Users";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faSpinner} from "@fortawesome/free-solid-svg-icons/faSpinner";
+import {Preloader} from "../common/Preloader/Preloader";
 
 //
 class UsersContainer extends React.Component<any, mapStateToPropsType> {
@@ -21,6 +20,7 @@ class UsersContainer extends React.Component<any, mapStateToPropsType> {
         this.props.setIsFetching(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(response => {
+                this.onPageChanged(1);
                 this.props.setIsFetching(false);
                 this.props.setUsers(response.data.items);
                 this.props.setTotalUsersCount(response.data.totalCount);
@@ -39,7 +39,7 @@ class UsersContainer extends React.Component<any, mapStateToPropsType> {
 
     render() {
         return <>
-            {this.props.isFetching ? <FontAwesomeIcon icon={faSpinner} spin={true}/> : null}
+            {this.props.isFetching && <Preloader/>}
             <Users totalUsersCount={this.props.totalUsersCount}
                    pageSize={this.props.pageSize}
                    currentPage={this.props.currentPage}

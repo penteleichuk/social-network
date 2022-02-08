@@ -6,6 +6,21 @@
     align-items: center;
 }
 
+.usersTitle {
+    width: 100%;
+    margin: 15px 0 0 25px;
+    border-bottom: 1px solid #444444;
+    padding-bottom: 15px;
+    font-size: 1.1rem;
+    color: #888;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.usersTitle svg {
+    margin-right: 10px;
+}
+
 .usersButton {
     padding: 20px;
 }
@@ -64,7 +79,7 @@
 
 .usersButtons button {
     width: 100%;
-    background: #76c978;
+    background: #3f6873;
     border: none;
     border-radius: 6px;
     padding: 5px 0;
@@ -73,6 +88,7 @@
 
 .usersButtons button:hover {
     cursor: pointer;
+    background: #1c7b94;
 }
 
 .userPhoto img {

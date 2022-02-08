@@ -1,0 +1,26 @@
+.pagination {
+    margin-bottom: 15px;
+    display: grid;
+    grid-auto-flow: column;
+    gap: 5px;
+}
+
+.pagination span {
+    background: #505050;
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: #ccc;
+}
+
+.pagination span:hover {
+    cursor: pointer;
+    background: #636363;
+}
+
+.paginationActive {
+    background: #636363 !important;
+}
+
+.paginationActive:hover {
+    cursor: default !important;
+}
