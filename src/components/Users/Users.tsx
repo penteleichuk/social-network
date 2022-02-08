@@ -5,6 +5,7 @@ import {UserType} from "./UsersContainer";
 import {Pagination} from "../common/Pagination/Pagination";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faUserCog} from "@fortawesome/free-solid-svg-icons";
+import {NavLink} from "react-router-dom";
 
 type UsersPPropsType = {
     totalUsersCount: number
@@ -35,7 +36,9 @@ export const Users = (props: UsersPPropsType) => {
                     props.users.map(u =>
                         <div key={u.id} className={styles.usersItem}>
                             <div className={styles.userPhoto}>
-                                <img src={u.photos.small || userPhoto} alt=""/>
+                                <NavLink to={`/profile/${u.id}`}>
+                                    <img src={u.photos.small || userPhoto} alt=""/>
+                                </NavLink>
                             </div>
                             <div className={styles.usersInfo}>
                                 <div className={styles.usersName}>{u.name}</div>

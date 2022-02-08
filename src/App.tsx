@@ -1,9 +1,9 @@
 import {Routes, Route} from "react-router-dom";
 import {Header} from "./components/Header/Header";
-import {Profile} from "./components/Profile/Profile";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import "./App.css";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 export const App = () => {
     return (
@@ -12,9 +12,10 @@ export const App = () => {
             <div className="wrapper">
                 <div className="content">
                     <Routes>
-                        <Route path='/' element={<Profile/>}/>
+                        <Route path='/' element={<ProfileContainer/>}/>
                         <Route path='/dialogs' element={<DialogsContainer/>}/>
-                        <Route path='/profile' element={<Profile/>}/>
+                        <Route path='/profile/:userId' element={<ProfileContainer/>}/>
+                        <Route path='/profile/*' element={<ProfileContainer/>}/>
                         <Route path='/users' element={<UsersContainer/>}/>
                     </Routes>
                 </div>

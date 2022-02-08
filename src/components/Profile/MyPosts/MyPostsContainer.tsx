@@ -4,11 +4,13 @@ import {addPostActionCreator, UpdateNewPostActionCreator} from "../../../redux/r
 import {MyPosts} from "./MyPosts";
 import {AppStateType} from "../../../redux/redux-store";
 import {PostType} from "./Post/Post";
+import {ProfilePropsType} from "../ProfileContainer";
 
 // MyPosts type
 export type mapStateToPropsType = {
     posts: Array<PostType>
     newPostText: string
+    profile: ProfilePropsType
 }
 export type MyPostPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
@@ -22,7 +24,8 @@ type mapDispatchToPropsType = {
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         posts: state.profilePage.posts,
-        newPostText: state.profilePage.newPostText
+        newPostText: state.profilePage.newPostText,
+        profile: state.profilePage.profile,
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
