@@ -6,6 +6,7 @@ import {Pagination} from "../Common/Pagination/Pagination";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faUserCog} from "@fortawesome/free-solid-svg-icons";
 import {NavLink} from "react-router-dom";
+import {authAPI} from "../../api/api";
 
 type UsersPPropsType = {
     totalUsersCount: number
@@ -23,6 +24,22 @@ export const Users = (props: UsersPPropsType) => {
     const pages = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
+    }
+
+    const unFollowHandler = (id: number) => {
+        authAPI.unFollow(id).then(data => {
+            if(data.resultCode === 0) {
+                props.unFollow(id);
+            }
+        })
+    }
+
+    const followHandler = (id: number) => {
+        authAPI.follow(id).then(data => {
+            if(data.resultCode === 0) {
+                props.follow(id);
+            }
+        });
     }
 
     return (
@@ -47,8 +64,8 @@ export const Users = (props: UsersPPropsType) => {
                             <div className={styles.usersButtons}>
                                 {
                                     u.followed
-                                    ? <button onClick={() => {props.unFollow(u.id)}}>UnFollow</button>
-                                    : <button onClick={() => {props.follow(u.id)}}>Follow</button>
+                                    ? <button onClick={() => {unFollowHandler(u.id)}}>UnFollow</button>
+                                    : <button onClick={() => {followHandler(u.id)}}>Follow</button>
                                 }
                             </div>
                         </div>

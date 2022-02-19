@@ -4,7 +4,7 @@ import axios from "axios";
 import {connect} from "react-redux";
 import {setUserProfile} from "../../redux/reducers/profile-reducer";
 import {AppStateType} from "../../redux/redux-store";
-import { withRouter } from "../../vendor/withRouter";
+import {withRouter} from "../../vendor/withRouter";
 
 class ProfileContainer extends React.Component<any, any> {
 
@@ -19,7 +19,7 @@ class ProfileContainer extends React.Component<any, any> {
 
     render() {
         return (
-            <Profile {...this.props} profile={this.props.profile} />
+            <Profile {...this.props} profile={this.props.profile}/>
         )
     }
 }

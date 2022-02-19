@@ -1,5 +1,5 @@
 import {Routes, Route} from "react-router-dom";
-import {Header} from "./components/Header/Header";
+import HeaderContainer from "./components/Header/HeaderContainer";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
@@ -8,7 +8,7 @@ import "./App.css";
 export const App = () => {
     return (
         <div className="app">
-            <Header/>
+            <HeaderContainer/>
             <div className="wrapper">
                 <div className="content">
                     <Routes>
