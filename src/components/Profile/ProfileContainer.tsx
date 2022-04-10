@@ -4,14 +4,18 @@ import {connect} from "react-redux";
 import {getProfile} from "../../redux/reducers/profile-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {withRouter} from "../../vendor/withRouter";
+import { Navigate } from "react-router-dom";
 
 class ProfileContainer extends React.Component<any, any> {
-
     componentDidMount() {
         this.props.getProfile((this.props.match) ? this.props.match.params.userId : 2);
     }
 
     render() {
+        if(!this.props.isAuth) {
+            return <Navigate to={'/login'}/>
+        }
+
         return (
             <Profile {...this.props} profile={this.props.profile}/>
         )
@@ -42,9 +46,10 @@ export type ProfilePropsType = {
     photos: ProfilePhotosType
 } | null
 
-const mapStateToProps = (state: AppStateType): { profile: ProfilePropsType } => {
+const mapStateToProps = (state: AppStateType): { profile: ProfilePropsType, isAuth: boolean } => {
     return {
-        profile: state.profilePage.profile
+        profile: state.profilePage.profile,
+        isAuth: state.auth.isAuth
     }
 }
 

@@ -21,12 +21,14 @@ type mapDispatchToPropsType = {
 }
 type mapStateToPropsType = {
     dialogsPage: DialogsType
+    isAuth: boolean
 }
 
 // Dispatch connect
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         dialogsPage: state.dialogsPage,
+        isAuth: state.auth.isAuth
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {

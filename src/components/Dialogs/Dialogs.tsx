@@ -3,8 +3,14 @@ import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {DialogsPropsType} from "./DialogsContainer";
 import s from './Dialogs.module.css'
+import { Navigate } from "react-router-dom";
 
 const Dialogs = (props: DialogsPropsType) => {
+
+    if(!props.isAuth) {
+        return <Navigate to={'/login'} />
+    }
+
     let state = props.dialogsPage;
 
     let dialogsElements = state.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id}/>);
