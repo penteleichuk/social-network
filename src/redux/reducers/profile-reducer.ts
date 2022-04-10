@@ -1,5 +1,6 @@
 import {mapStateToPropsType} from "../../components/Profile/MyPosts/MyPostsContainer";
 import {ProfilePropsType} from "../../components/Profile/ProfileContainer";
+import {usersAPI} from "../../api/api";
 
 // Const action
 const ADD_POST = 'ADD-POST';
@@ -64,3 +65,9 @@ export const setUserProfile = (profile: ProfilePropsType): SetUserProfileActionT
     type: SET_USER_PROFILE,
     profile,
 });
+
+// THUNK
+export const getProfile = (userId: number = 2) => (dispatch: any) => {
+    usersAPI.getProfile(userId)
+        .then(response => dispatch(setUserProfile(response.data)));
+}

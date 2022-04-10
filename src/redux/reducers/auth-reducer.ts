@@ -1,4 +1,6 @@
 // Const action
+import {authAPI} from "../../api/api";
+
 const SET_USER_DATA = 'SET_USER_DATA';
 
 // Init
@@ -50,3 +52,13 @@ export const setAuthUserData = (userId: number, email: string, login: string): S
     type: SET_USER_DATA,
     payload: {userId, email, login}
 });
+
+// THUNK
+export const getAuthUserData = () => (dispatch: any) => {
+    authAPI.me().then(response => {
+        if (response.resultCode === 0) {
+            const {id, login, email} = response.data;
+            dispatch(setAuthUserData(id, email, login));
+        }
+    })
+}
