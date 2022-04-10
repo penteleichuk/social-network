@@ -29,6 +29,8 @@ export class UsersAPIComponent extends React.Component<any, mapStateToPropsType>
                       users={this.props.users}
                       follow={this.props.follow}
                       unFollow={this.props.unFollow}
+                      followingInProgress={this.props.followingInProgress}
+                      setIsFollowingProgress={this.props.setIsFollowingProgress}
         />
     }
 }

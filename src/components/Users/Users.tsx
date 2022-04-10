@@ -16,6 +16,8 @@ type UsersPPropsType = {
     users: Array<UserType>
     follow: (id: number) => void
     unFollow: (id: number) => void
+    followingInProgress: Array<number>
+    setIsFollowingProgress: (isFetching: boolean, id: number) => void
 }
 
 export const Users = (props: UsersPPropsType) => {
@@ -27,18 +29,21 @@ export const Users = (props: UsersPPropsType) => {
     }
 
     const unFollowHandler = (id: number) => {
+        props.setIsFollowingProgress(true, id);
         authAPI.unFollow(id).then(data => {
-            if(data.resultCode === 0) {
+            if (data.resultCode === 0) {
                 props.unFollow(id);
             }
+            props.setIsFollowingProgress(false, id);
         })
     }
-
     const followHandler = (id: number) => {
+        props.setIsFollowingProgress(true, id);
         authAPI.follow(id).then(data => {
-            if(data.resultCode === 0) {
+            if (data.resultCode === 0) {
                 props.follow(id);
             }
+            props.setIsFollowingProgress(false, id);
         });
     }
 
@@ -64,8 +69,12 @@ export const Users = (props: UsersPPropsType) => {
                             <div className={styles.usersButtons}>
                                 {
                                     u.followed
-                                    ? <button onClick={() => {unFollowHandler(u.id)}}>UnFollow</button>
-                                    : <button onClick={() => {followHandler(u.id)}}>Follow</button>
+                                        ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                                            unFollowHandler(u.id)
+                                        }}>UnFollow</button>
+                                        : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                                            followHandler(u.id)
+                                        }}>Follow</button>
                                 }
                             </div>
                         </div>
