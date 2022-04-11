@@ -3,7 +3,7 @@ import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {getProfile} from "../../redux/reducers/profile-reducer";
 import {AppStateType} from "../../redux/redux-store";
-import {withRouter} from "../../vendor/withRouter";
+import {withRouter} from "../../hoc/withRouter";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 

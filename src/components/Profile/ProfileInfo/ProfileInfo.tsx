@@ -2,6 +2,7 @@ import style from './ProfileInfo.module.css';
 import defaultBG from '../../../assets/images/default-bg.jpg'
 import authorImg from '../../../assets/images/author.jpeg'
 import {Preloader} from "../../Common/Preloader/Preloader";
+import ProfileStatus  from './ProfileStatus/ProfileStatus';
 
 export const ProfileInfo = (props: any) => {
     if(!props.profile) {
@@ -18,6 +19,7 @@ export const ProfileInfo = (props: any) => {
                     <img src={props.profile.photos.small || authorImg} alt=""/>
                 </div>
                 <div className={style.profile__fullname}>Khaby Lame</div>
+                <ProfileStatus status={"Hello my friend"}/>
             </div>
         </div>
     )
