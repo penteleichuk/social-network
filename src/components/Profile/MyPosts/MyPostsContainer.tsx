@@ -11,6 +11,7 @@ export type mapStateToPropsType = {
     posts: Array<PostType>
     newPostText: string
     profile: ProfilePropsType
+    status?: string
 }
 export type MyPostPropsType = mapStateToPropsType & mapDispatchToPropsType;
 

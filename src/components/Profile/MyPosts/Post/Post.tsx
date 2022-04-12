@@ -2,6 +2,7 @@ import style from './Post.module.css'
 import {faHeart} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import authorImg from '../../../../assets/images/author.jpeg'
+import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
 export type PostType = {
     id?: number
@@ -24,7 +25,7 @@ export const Post = (props: PostType) => {
                 </div>
             </div>
             <div className={style.itemLike}>
-                <FontAwesomeIcon icon={faHeart}/> {props.likesCount}
+                <FontAwesomeIcon icon={faHeart as IconProp}/> {props.likesCount}
             </div>
         </div>
     )

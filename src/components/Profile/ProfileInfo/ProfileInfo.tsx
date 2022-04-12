@@ -8,7 +8,6 @@ export const ProfileInfo = (props: any) => {
     if(!props.profile) {
         return <Preloader/>
     }
-
     return (
         <div className={style.profile} >
             <div className={style.profile__background}>
@@ -18,8 +17,8 @@ export const ProfileInfo = (props: any) => {
                 <div className={style.profile__photo}>
                     <img src={props.profile.photos.small || authorImg} alt=""/>
                 </div>
-                <div className={style.profile__fullname}>Khaby Lame</div>
-                <ProfileStatus status={"Hello my friend"}/>
+                <div className={style.profile__fullname}>{props.profile.fullName}</div>
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
     )

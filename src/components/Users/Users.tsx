@@ -6,6 +6,7 @@ import {Pagination} from "../Common/Pagination/Pagination";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faUserCog} from "@fortawesome/free-solid-svg-icons";
 import {NavLink} from "react-router-dom";
+import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
 type UsersPPropsType = {
     totalUsersCount: number
@@ -29,7 +30,7 @@ export const Users = (props: UsersPPropsType) => {
     return (
         <div className={styles.users}>
             <div className={styles.usersTitle}>
-                <FontAwesomeIcon icon={faUserCog}/>
+                <FontAwesomeIcon icon={faUserCog as IconProp}/>
                 Users list
             </div>
             <div className={styles.usersList}>
