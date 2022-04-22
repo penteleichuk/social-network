@@ -1,11 +1,9 @@
 import { mapStateToPropsType } from '../../components/Profile/MyPosts/MyPostsContainer';
 import { ProfilePropsType } from '../../components/Profile/ProfileContainer';
 import { profileAPI, usersAPI } from '../../api/api';
-import { string } from 'yup';
 
 // Const action
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_USER_STATUS = 'SET_USER_STATUS';
 
@@ -13,10 +11,6 @@ const SET_USER_STATUS = 'SET_USER_STATUS';
 type AddPostActionType = {
 	type: typeof ADD_POST;
 	post: string;
-};
-type UpdateNewPostTextActionType = {
-	type: typeof UPDATE_NEW_POST_TEXT;
-	newText: string;
 };
 type SetUserProfileActionType = {
 	type: typeof SET_USER_PROFILE;
@@ -28,7 +22,6 @@ type SetUserStatusActionType = {
 };
 type ActionsType =
 	| AddPostActionType
-	| UpdateNewPostTextActionType
 	| SetUserProfileActionType
 	| SetUserStatusActionType;
 
@@ -39,7 +32,6 @@ const initialState: initialStateType = {
 		{ id: 1, message: 'Hi, how are you ?', likesCount: 20 },
 		{ id: 2, message: "It's my first post", likesCount: 12 },
 	],
-	newPostText: '',
 	profile: null,
 	status: '',
 };
@@ -53,9 +45,6 @@ export const profileReducer = (
 		case ADD_POST: {
 			let newPost = { id: 5, message: action.post, likesCount: 0 };
 			return { ...state, posts: [newPost, ...state.posts] };
-		}
-		case UPDATE_NEW_POST_TEXT: {
-			return { ...state, newPostText: action.newText };
 		}
 		case SET_USER_PROFILE: {
 			return { ...state, profile: action.profile };
@@ -73,13 +62,6 @@ export const profileReducer = (
 export const addPostActionCreator = (post: string): AddPostActionType => ({
 	type: ADD_POST,
 	post: post,
-});
-
-export const UpdateNewPostActionCreator = (
-	text: string
-): UpdateNewPostTextActionType => ({
-	type: UPDATE_NEW_POST_TEXT,
-	newText: text,
 });
 
 export const setUserProfile = (

@@ -2,18 +2,14 @@ import { DialogsType } from '../../components/Dialogs/DialogsContainer';
 
 // Const action
 const SEND_MESSAGE = 'SEND-MESSAGE';
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 
 // Action type
 type SendMessageActionType = {
 	type: typeof SEND_MESSAGE;
 	message: string;
 };
-type UpdateNewMessageBodyActionType = {
-	type: typeof UPDATE_NEW_MESSAGE_BODY;
-	body: string;
-};
-type ActionsType = SendMessageActionType | UpdateNewMessageBodyActionType;
+
+type ActionsType = SendMessageActionType;
 
 // Init
 type InitialStateType = DialogsType;
@@ -33,23 +29,14 @@ const initialState: InitialStateType = {
 		{ id: 5, name: 'Viktor' },
 		{ id: 6, name: 'Petya' },
 	],
-	newMessageBody: '',
 };
 
 // Reducer
 export const dialogsReducer = (state = initialState, action: ActionsType) => {
 	switch (action.type) {
-		case UPDATE_NEW_MESSAGE_BODY: {
-			return {
-				...state,
-				newMessageBody: action.body,
-			};
-		}
-
 		case SEND_MESSAGE: {
 			return {
 				...state,
-				newMessageBody: '',
 				messages: [...state.messages, { id: 6, message: action.message }],
 			};
 		}
@@ -64,8 +51,4 @@ export const dialogsReducer = (state = initialState, action: ActionsType) => {
 export const sendMessageCreator = (message: string) => ({
 	type: SEND_MESSAGE,
 	message,
-});
-export const UpdateNewMessageBodyCreator = (body: string) => ({
-	type: UPDATE_NEW_MESSAGE_BODY,
-	body,
 });

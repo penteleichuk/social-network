@@ -3,7 +3,7 @@ import { AppStateType } from "../../redux/redux-store";
 import { compose, Dispatch } from "redux";
 import { MessageType } from "./Message/Message";
 import { DialogType } from "./DialogItem/DialogItem";
-import { sendMessageCreator, UpdateNewMessageBodyCreator } from "../../redux/reducers/dialogs-reducer";
+import { sendMessageCreator } from "../../redux/reducers/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 
@@ -11,13 +11,11 @@ import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 export type DialogsType = {
     messages: Array<MessageType>
     dialogs: Array<DialogType>
-    newMessageBody: string
 }
 export type DialogsPropsType = mapDispatchToPropsType & mapStateToPropsType;
 
 // Dispatch type
 type mapDispatchToPropsType = {
-    updateNewMessageBody: (body: string) => void
     sendMessage: (message: string) => void
 }
 type mapStateToPropsType = {
@@ -32,9 +30,6 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 }
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     return {
-        updateNewMessageBody: (body: string) => {
-            dispatch(UpdateNewMessageBodyCreator(body));
-        },
         sendMessage: (message: string) => {
             dispatch(sendMessageCreator(message));
         },
