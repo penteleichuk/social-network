@@ -7,7 +7,6 @@ type LoginPropsType = {
 }
 
 export const Login = () => {
-
   const onSubmit = (props: LoginPropsType) => {
     console.log(props);
   }
