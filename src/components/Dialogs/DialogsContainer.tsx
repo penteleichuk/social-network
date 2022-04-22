@@ -1,11 +1,11 @@
-import {connect} from "react-redux";
-import {AppStateType} from "../../redux/redux-store";
-import {compose, Dispatch} from "redux";
-import {MessageType} from "./Message/Message";
-import {DialogType} from "./DialogItem/DialogItem";
-import {sendMessageCreator, UpdateNewMessageBodyCreator} from "../../redux/reducers/dialogs-reducer";
+import { connect } from "react-redux";
+import { AppStateType } from "../../redux/redux-store";
+import { compose, Dispatch } from "redux";
+import { MessageType } from "./Message/Message";
+import { DialogType } from "./DialogItem/DialogItem";
+import { sendMessageCreator, UpdateNewMessageBodyCreator } from "../../redux/reducers/dialogs-reducer";
 import Dialogs from "./Dialogs";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 
 // Dialogs type
 export type DialogsType = {
@@ -18,7 +18,7 @@ export type DialogsPropsType = mapDispatchToPropsType & mapStateToPropsType;
 // Dispatch type
 type mapDispatchToPropsType = {
     updateNewMessageBody: (body: string) => void
-    sendMessage: () => void
+    sendMessage: (message: string) => void
 }
 type mapStateToPropsType = {
     dialogsPage: DialogsType
@@ -35,8 +35,8 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
         updateNewMessageBody: (body: string) => {
             dispatch(UpdateNewMessageBodyCreator(body));
         },
-        sendMessage: () => {
-            dispatch(sendMessageCreator());
+        sendMessage: (message: string) => {
+            dispatch(sendMessageCreator(message));
         },
     }
 }
