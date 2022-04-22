@@ -1,16 +1,15 @@
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import {
     follow,
     getUsers,
     initialStateType,
     setCurrentPage, unFollow,
 } from "../../redux/reducers/users-reducer";
-import {AppStateType} from "../../redux/redux-store";
+import { AppStateType } from "../../redux/redux-store";
 import React from "react";
-import {Users} from "./Users";
-import {Preloader} from "../Common/Preloader/Preloader";
-import {compose} from "redux";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import { Users } from "./Users";
+import { Preloader } from "../Common/Preloader/Preloader";
+import { compose } from "redux";
 
 class UsersContainer extends React.Component<any, mapStateToPropsType> {
     componentDidMount() {
@@ -22,18 +21,18 @@ class UsersContainer extends React.Component<any, mapStateToPropsType> {
     }
 
     render() {
-        return <>
-            {this.props.isFetching && <Preloader/>}
+        return <div className="content">
+            {this.props.isFetching && <Preloader />}
             <Users totalUsersCount={this.props.totalUsersCount}
-                   pageSize={this.props.pageSize}
-                   currentPage={this.props.currentPage}
-                   onPageChanged={this.onPageChanged}
-                   users={this.props.users}
-                   follow={this.props.follow}
-                   unFollow={this.props.unFollow}
-                   followingInProgress={this.props.followingInProgress}
+                pageSize={this.props.pageSize}
+                currentPage={this.props.currentPage}
+                onPageChanged={this.onPageChanged}
+                users={this.props.users}
+                follow={this.props.follow}
+                unFollow={this.props.unFollow}
+                followingInProgress={this.props.followingInProgress}
             />
-        </>
+        </div>
     }
 }
 
