@@ -1,14 +1,15 @@
 import '../../App.css';
-import {Header, HeaderPropsType} from "./Header";
+import { Header, HeaderPropsType } from "./Header";
 import React from "react";
-import {connect} from "react-redux";
-import {getAuthUserData} from "../../redux/reducers/auth-reducer";
-import {AppStateType} from "../../redux/redux-store";
+import { connect } from "react-redux";
+import { getAuthUserData, logout } from "../../redux/reducers/auth-reducer";
+import { AppStateType } from "../../redux/redux-store";
 import { compose } from 'redux';
 
 // Type
 type mapDispatchToPropsType = {
     getAuthUserData: () => void
+    logout: () => void
 }
 
 type mapStateToPropsType = HeaderPropsType
@@ -23,8 +24,8 @@ class HeaderContainer extends React.Component<mapStateToPropsType & mapDispatchT
     }
 
     render() {
-        const {isAuth, login} = this.props;
-        return <Header isAuth={isAuth} login={login}/>
+        const { isAuth, login } = this.props;
+        return <Header isAuth={isAuth} login={login} logout={this.props.logout} />
     }
 }
 
@@ -32,11 +33,12 @@ class HeaderContainer extends React.Component<mapStateToPropsType & mapDispatchT
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         isAuth: state.auth.isAuth,
-        login: state.auth.login,
+        login: state.auth.login
     }
 }
 const mapDispatchToProps: mapDispatchToPropsType = {
-    getAuthUserData
+    getAuthUserData,
+    logout
 }
 
 export default compose(

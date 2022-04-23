@@ -4,7 +4,7 @@ import { DialogsContainer } from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import "./App.css";
-import { Login } from "./components/Login/Login";
+import Login from "./components/Login/Login";
 
 export const App = () => {
     return (
