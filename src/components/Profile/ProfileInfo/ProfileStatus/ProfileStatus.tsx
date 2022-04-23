@@ -1,8 +1,8 @@
-import React, {ChangeEvent} from "react";
+import React, { ChangeEvent } from "react";
 
-type PropsType = {
-    status: string
-}
+// type PropsType = {
+//     status: string
+// }
 
 class ProfileStatus extends React.Component<any, any> {
 
@@ -49,7 +49,7 @@ class ProfileStatus extends React.Component<any, any> {
             {this.state.editMode &&
                 <div>
                     <input onChange={this.onStatusChange} type="text" value={this.state.status} autoFocus={true}
-                           onBlur={this.editModeDeactivate}/>
+                        onBlur={this.editModeDeactivate} />
                 </div>
             }
         </div>

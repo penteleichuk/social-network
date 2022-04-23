@@ -1,7 +1,7 @@
 // Const action
-import { log } from 'console';
 import { Dispatch } from 'redux';
 import { authAPI } from '../../api/api';
+import { LoginPropsType } from '../../components/Login/Login';
 
 const SET_USER_DATA = 'SET_USER_DATA';
 const SET_AUTH_CAPTCHA = 'SET_AUTH_CAPTCHA';
@@ -95,15 +95,19 @@ export const getAuthUserData = () => (dispatch: Dispatch) => {
 };
 
 export const login =
-	(email: string, password: string, rememberMe: boolean, captcha: string) =>
-	(dispatch: any) => {
-		authAPI.login(email, password, rememberMe, captcha).then(res => {
-			if (res.data.resultCode === 0) {
-				dispatch(getAuthUserData());
-			} else if (res.data.resultCode === 10) {
-				dispatch(getCaptcha());
-			}
-		});
+	(values: LoginPropsType, actions: any) => (dispatch: any) => {
+		authAPI
+			.login(values.login, values.password, values.remember, values.captcha)
+			.then(res => {
+				if (res.data.resultCode === 0) {
+					dispatch(getAuthUserData());
+					return 1;
+				} else if (res.data.resultCode === 10) {
+					dispatch(getCaptcha());
+				}
+
+				actions.setStatus({ error: res.data.messages[0] });
+			});
 	};
 
 export const logout = () => (dispatch: Dispatch) => {

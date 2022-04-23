@@ -13,7 +13,7 @@ type mapDispatchToPropsType = {
 }
 
 type mapStateToPropsType = HeaderPropsType
-type HeaderContainerPropsType = any;// mapDispatchToPropsType & mapStateToPropsType;
+// type HeaderContainerPropsType = any;// mapDispatchToPropsType & mapStateToPropsType;
 
 // Class
 //class HeaderContainer extends React.Component<any, any> {

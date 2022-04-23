@@ -1,4 +1,3 @@
-import { ChangeEvent } from "react";
 import { Post } from "./Post/Post";
 import { MyPostPropsType } from "./MyPostsContainer";
 import style from './MyPosts.module.css'
