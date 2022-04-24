@@ -8,7 +8,7 @@ const SET_AUTH_CAPTCHA = 'SET_AUTH_CAPTCHA';
 
 // Init
 export type initialStateType = {
-	usersId: number | null;
+	userId: number | null;
 	email: string | null;
 	login: string | null;
 	isFetching: boolean;
@@ -16,7 +16,7 @@ export type initialStateType = {
 	captcha: string | null;
 };
 const initialState: initialStateType = {
-	usersId: null,
+	userId: null,
 	email: null,
 	login: null,
 	isFetching: false,
@@ -86,7 +86,7 @@ export const setAuthCaptcha = (url: string): SetAuthCaptcha => {
 
 // THUNK
 export const getAuthUserData = () => (dispatch: Dispatch) => {
-	authAPI.me().then(response => {
+	return authAPI.me().then(response => {
 		if (response.resultCode === 0) {
 			const { id, login, email } = response.data;
 			dispatch(setAuthUserData(id, email, login, true));

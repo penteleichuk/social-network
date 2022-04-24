@@ -1,23 +1,34 @@
-import React from "react";
+import { useEffect } from "react";
 import { Profile } from "./Profile";
 import { connect } from "react-redux";
 import { getProfile, getStatus, updateStatus } from "../../redux/reducers/profile-reducer";
 import { AppStateType } from "../../redux/redux-store";
 import { withRouter } from "../../hoc/withRouter";
 import { compose } from "redux";
+import { useNavigate } from "react-router-dom";
 
-class ProfileContainer extends React.Component<any, any> {
-    componentDidMount() {
-        const userId = (this.props.match) ? this.props.match.params.userId : 22092;
-        this.props.getProfile(userId);
-        this.props.getStatus(userId);
-    }
+const ProfileContainer = (props: any) => {
+    const navigate = useNavigate();
 
-    render() {
-        return (
-            <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus} />
-        )
-    }
+    useEffect(() => {
+        let userId = (props.match) ? props.match.params.userId : null;
+
+        if (!userId) {
+            userId = props.userId;
+
+            if (userId) {
+                props.getProfile(userId);
+                props.getStatus(userId);
+            } else {
+                navigate('/login');
+            }
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+    return (
+        <Profile {...props} profile={props.profile} status={props.status} updateStatus={props.updateStatus} />
+    )
 }
 
 type ProfilePhotosType = {
@@ -44,10 +55,12 @@ export type ProfilePropsType = {
     photos: ProfilePhotosType
 } | null
 
-const mapStateToProps = (state: AppStateType): { profile: ProfilePropsType, status: string | undefined } => {
+const mapStateToProps = (state: AppStateType): { profile: ProfilePropsType, status: string | undefined, userId: number | null, isAuth: boolean } => {
     return {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
+        userId: state.auth.userId,
+        isAuth: state.auth.isAuth,
     }
 }
 
