@@ -10,7 +10,7 @@ import React from "react";
 import { Users } from "./Users";
 import { Preloader } from "../Common/Preloader/Preloader";
 import { compose } from "redux";
-import { getUsers, getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount } from "../../redux/reducers/selectors/user-selectors";
+import { getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsersSelector } from "../../redux/reducers/selectors/user-selectors";
 
 class UsersContainer extends React.Component<any, mapStateToPropsType> {
     componentDidMount() {
@@ -69,7 +69,7 @@ export type UsersPropsType = mapDispatchToPropsType & mapStateToPropsType
 // Dispatch connect
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
-        users: getUsers(state),
+        users: getUsersSelector(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
