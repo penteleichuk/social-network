@@ -55,10 +55,7 @@ const mapStateToProps = (state: AppStateType): { initialized: boolean } => {
     }
 }
 
-// export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
-
 export default compose<any>(
     connect(mapStateToProps, mapDispatchToProps),
     withRouter,
-    // withAuthRedirect,
 )(App)

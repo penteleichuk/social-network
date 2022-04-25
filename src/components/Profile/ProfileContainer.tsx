@@ -16,13 +16,13 @@ const ProfileContainer = (props: any) => {
         if (!userId) {
             userId = props.userId;
 
-            if (userId) {
-                props.getProfile(userId);
-                props.getStatus(userId);
-            } else {
+            if (!userId) {
                 navigate('/login');
             }
         }
+
+        props.getProfile(userId);
+        props.getStatus(userId);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
