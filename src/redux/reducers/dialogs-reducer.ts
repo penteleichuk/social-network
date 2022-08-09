@@ -1,7 +1,7 @@
 import { DialogsType } from '../../components/Dialogs/DialogsContainer';
 
 // Const action
-const SEND_MESSAGE = 'SEND-MESSAGE';
+const SEND_MESSAGE = 'DIALOG/SEND-MESSAGE';
 
 // Action type
 type SendMessageActionType = {

@@ -3,8 +3,8 @@ import { Dispatch } from 'redux';
 import { authAPI } from '../../api/api';
 import { LoginPropsType } from '../../components/Login/Login';
 
-const SET_USER_DATA = 'SET_USER_DATA';
-const SET_AUTH_CAPTCHA = 'SET_AUTH_CAPTCHA';
+const SET_USER_DATA = 'AUTH/SET_USER_DATA';
+const SET_AUTH_CAPTCHA = 'AUTH/SET_AUTH_CAPTCHA';
 
 // Init
 export type initialStateType = {
@@ -54,7 +54,7 @@ export const authReducer = (
 				...action.payload,
 			};
 		}
-		case 'SET_AUTH_CAPTCHA': {
+		case SET_AUTH_CAPTCHA: {
 			return {
 				...state,
 				captcha: action.url,
@@ -78,10 +78,7 @@ export const setAuthUserData = (
 });
 
 export const setAuthCaptcha = (url: string): SetAuthCaptcha => {
-	return {
-		type: 'SET_AUTH_CAPTCHA',
-		url,
-	};
+	return { type: SET_AUTH_CAPTCHA, url };
 };
 
 // THUNK

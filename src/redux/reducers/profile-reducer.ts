@@ -3,9 +3,9 @@ import { ProfilePropsType } from '../../components/Profile/ProfileContainer';
 import { profileAPI, usersAPI } from '../../api/api';
 
 // Const action
-const ADD_POST = 'ADD-POST';
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_USER_STATUS = 'SET_USER_STATUS';
+const ADD_POST = 'PROFILE/ADD-POST';
+const SET_USER_PROFILE = 'PROFILE/SET_USER_PROFILE';
+const SET_USER_STATUS = 'PROFILE/SET_USER_STATUS';
 
 // Action type
 type AddPostActionType = {
