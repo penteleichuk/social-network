@@ -79,22 +79,25 @@ export const setUserStatus = (status: string): SetUserStatusActionType => ({
 // THUNK
 export const getProfile =
 	(userId: number = 2) =>
-	(dispatch: any) => {
-		usersAPI
-			.getProfile(userId)
-			.then(response => dispatch(setUserProfile(response.data)));
+	async (dispatch: any) => {
+		try {
+			const res = await usersAPI.getProfile(userId);
+			dispatch(setUserProfile(res.data));
+		} catch (e) {}
 	};
 
-export const getStatus = (userId: number) => (dispatch: any) => {
-	profileAPI.getStatus(userId).then(res => {
+export const getStatus = (userId: number) => async (dispatch: any) => {
+	try {
+		const res = await profileAPI.getStatus(userId);
 		dispatch(setUserStatus(res.data));
-	});
+	} catch (e) {}
 };
 
-export const updateStatus = (status: string) => (dispatch: any) => {
-	profileAPI.updateStatus(status).then(res => {
+export const updateStatus = (status: string) => async (dispatch: any) => {
+	try {
+		const res = await profileAPI.updateStatus(status);
 		if (res.data.resultCode === 0) {
 			dispatch(setUserStatus(status));
 		}
-	});
+	} catch (e) {}
 };

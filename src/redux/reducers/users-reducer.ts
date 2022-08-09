@@ -1,5 +1,6 @@
 import { UserType } from '../../components/Users/UsersContainer';
 import { usersAPI } from '../../api/api';
+import { DispatchProp } from 'react-redux';
 
 // Const action
 const FOLLOW = 'USER/FOLLOW';
@@ -160,37 +161,38 @@ export const setIsFollowingProgress = (
 });
 
 // THUNK
-export const requestUsers = (currentPage: number, pageSize: number) => {
-	return (dispatch: any) => {
+export const requestUsers =
+	(currentPage: number, pageSize: number) => async (dispatch: any) => {
 		dispatch(setIsFetching(true));
 
-		usersAPI.getUsers(currentPage, pageSize).then(data => {
+		try {
+			const res = await usersAPI.getUsers(currentPage, pageSize);
 			dispatch(setCurrentPage(currentPage));
-			dispatch(setIsFetching(false));
-			dispatch(setUsers(data.items));
-			dispatch(setTotalUsersCount(data.totalCount));
-		});
+			dispatch(setUsers(res.items));
+			dispatch(setTotalUsersCount(res.totalCount));
+		} catch (e) {}
+
+		dispatch(setIsFetching(false));
 	};
-};
-export const follow = (userId: number) => {
-	return (dispatch: any) => {
+
+export const follow = (userId: number) => async (dispatch: any) => {
+	try {
 		dispatch(setIsFollowingProgress(true, userId));
-		usersAPI.follow(userId).then(data => {
-			if (data.resultCode === 0) {
-				dispatch(followSuccess(userId));
-			}
-			dispatch(setIsFollowingProgress(false, userId));
-		});
-	};
+
+		const res = await usersAPI.follow(userId);
+		if (res.resultCode === 0) {
+			dispatch(followSuccess(userId));
+		}
+		dispatch(setIsFollowingProgress(false, userId));
+	} catch (e) {}
 };
-export const unFollow = (userId: number) => {
-	return (dispatch: any) => {
-		dispatch(setIsFollowingProgress(true, userId));
-		usersAPI.unFollow(userId).then(data => {
-			if (data.resultCode === 0) {
-				dispatch(unFollowSuccess(userId));
-			}
-			dispatch(setIsFollowingProgress(false, userId));
-		});
-	};
+
+export const unFollow = (userId: number) => async (dispatch: any) => {
+	try {
+		const res = await usersAPI.unFollow(userId);
+		if (res.resultCode === 0) {
+			dispatch(unFollowSuccess(userId));
+		}
+		dispatch(setIsFollowingProgress(false, userId));
+	} catch (e) {}
 };
