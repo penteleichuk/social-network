@@ -1,6 +1,5 @@
 import React, { ChangeEvent } from "react";
 import style from './../../ProfileInfo/ProfileInfo.module.css';
-
 class ProfileStatus extends React.Component<any, any> {
 
     state = {
@@ -11,7 +10,6 @@ class ProfileStatus extends React.Component<any, any> {
 
     componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>, snapshot?: any) {
         if (prevProps.status !== this.props.status) {
-            // debugger
             this.setState({
                 status: this.props.status
             })

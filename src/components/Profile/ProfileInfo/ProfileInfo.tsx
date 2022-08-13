@@ -13,7 +13,6 @@ export const ProfileInfo = (props: any) => {
     const { updatePhoto, isOwner, profile, status, updateStatus } = props;
     const dispatch = useDispatch();
 
-    // upload img
     const refImg = useRef<HTMLInputElement>(null);
 
     if (!profile) {

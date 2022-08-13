@@ -1,8 +1,8 @@
-import style from './Header.module.css';
 import '../../App.css';
 import { Navbar } from "../Navbar/Navbar";
 import Logo from '../../assets/images/logo.png'
 import { NavLink } from "react-router-dom";
+import style from './Header.module.css';
 
 export type HeaderPropsType = {
     isAuth: boolean
@@ -19,7 +19,7 @@ export const Header = (props: HeaderPropsType & { logout: () => void }) => {
                 <div className={style.loginBlock}>
                     {!props.isAuth
                         ? <div><NavLink to={'/login'}>Login</NavLink></div>
-                        : <div>{props.login} - <button onClick={props.logout}>Logout</button></div>
+                        : <div className={style.login}>{props.login} - <button onClick={props.logout}>Logout</button></div>
                     }
                 </div>
             </div>

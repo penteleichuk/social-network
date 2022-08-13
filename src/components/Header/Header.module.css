@@ -10,3 +10,20 @@
 .header img {
     width: 100px;
 }
+
+.login {
+    color: #fff;
+}
+
+.login button {
+    cursor: pointer;
+    background-color: #4872a3;
+    border: none;
+    border-radius: 9px;
+    padding: 3px 10px;
+    color: #fff;
+}
+
+.login button:hover {
+    opacity: .8;
+}
