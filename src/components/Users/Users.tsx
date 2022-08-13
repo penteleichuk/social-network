@@ -1,5 +1,5 @@
 import styles from "./Users.module.css";
-import userPhoto from "../../assets/images/user.png";
+import userPhoto from "../../assets/images/author.jpeg";
 import { UserType } from "./UsersContainer";
 import { Pagination } from "../Common/Pagination/Pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -35,7 +35,6 @@ export const Users = (props: UsersPPropsType) => {
                         </div>
                         <div className={styles.usersInfo}>
                             <div className={styles.usersName}>{u.name}</div>
-                            {/*<div className={styles.usersStatus}>{u.status}</div>*/}
                         </div>
                         <div className={styles.usersButtons}>
                             {
