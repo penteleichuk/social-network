@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect } from "react";
+import { useLayoutEffect } from "react";
 import { Profile } from "./Profile";
 import { connect } from "react-redux";
 import { getProfile, getStatus, updatePhoto, updateStatus } from "../../redux/reducers/profile-reducer";
