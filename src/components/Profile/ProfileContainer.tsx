@@ -9,15 +9,11 @@ import { useNavigate } from "react-router-dom";
 
 const ProfileContainer = (props: any) => {
     const navigate = useNavigate();
-    let userId = (props.match) ? props.match.params.userId : null;
+    let userId = (props.match) ? props.match.params.userId : props.userId;
 
     useEffect(() => {
         if (!userId) {
-            userId = props.userId;
-
-            if (!userId) {
-                navigate('/login');
-            }
+            navigate('/login');
         }
     }, [])
 
