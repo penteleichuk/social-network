@@ -1,11 +1,15 @@
 import { mapStateToPropsType } from '../../components/Profile/MyPosts/MyPostsContainer';
-import { ProfilePropsType } from '../../components/Profile/ProfileContainer';
+import {
+	ProfilePhotosType,
+	ProfilePropsType,
+} from '../../components/Profile/ProfileContainer';
 import { profileAPI, usersAPI } from '../../api/api';
 
 // Const action
 const ADD_POST = 'PROFILE/ADD-POST';
 const SET_USER_PROFILE = 'PROFILE/SET_USER_PROFILE';
 const SET_USER_STATUS = 'PROFILE/SET_USER_STATUS';
+const SET_USER_PHOTOS = 'PROFILE/SET_USER_PHOTOS';
 
 // Action type
 type AddPostActionType = {
@@ -20,10 +24,15 @@ type SetUserStatusActionType = {
 	type: typeof SET_USER_STATUS;
 	status: string;
 };
+type SetUserPhotosActionType = {
+	type: typeof SET_USER_PHOTOS;
+	files: ProfilePhotosType;
+};
 type ActionsType =
 	| AddPostActionType
 	| SetUserProfileActionType
-	| SetUserStatusActionType;
+	| SetUserStatusActionType
+	| SetUserPhotosActionType;
 
 // Init
 type initialStateType = mapStateToPropsType;
@@ -52,6 +61,12 @@ export const profileReducer = (
 		case SET_USER_STATUS: {
 			return { ...state, status: action.status };
 		}
+		case SET_USER_PHOTOS: {
+			return {
+				...state,
+				profile: { ...state.profile, photos: action.files },
+			};
+		}
 		default: {
 			return state;
 		}
@@ -76,6 +91,13 @@ export const setUserStatus = (status: string): SetUserStatusActionType => ({
 	status: status,
 });
 
+export const setUserPhotos = (
+	files: ProfilePhotosType
+): SetUserPhotosActionType => ({
+	type: SET_USER_PHOTOS,
+	files: files,
+});
+
 // THUNK
 export const getProfile =
 	(userId: number = 2) =>
@@ -98,6 +120,15 @@ export const updateStatus = (status: string) => async (dispatch: any) => {
 		const res = await profileAPI.updateStatus(status);
 		if (res.data.resultCode === 0) {
 			dispatch(setUserStatus(status));
+		}
+	} catch (e) {}
+};
+
+export const updatePhoto = (file: string) => async (dispatch: any) => {
+	try {
+		const res = await profileAPI.updatePhoto(file);
+		if (res.data.resultCode === 0) {
+			dispatch(setUserPhotos(res.data.data.photos));
 		}
 	} catch (e) {}
 };

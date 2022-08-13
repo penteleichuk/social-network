@@ -7,10 +7,12 @@ type ProfileProps = {
 }
 
 export const Profile = (props: any) => {
+    const { updatePhoto, isOwner, profile, status, updateStatus } = props;
+
     return (
         <div className="content">
             <div className={style.profile}>
-                <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus} />
+                <ProfileInfo updatePhoto={updatePhoto} isOwner={isOwner} profile={profile} status={status} updateStatus={updateStatus} />
                 <MyPostsContainer />
             </div>
         </div>

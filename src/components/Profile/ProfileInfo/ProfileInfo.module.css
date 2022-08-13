@@ -18,8 +18,21 @@
     object-fit: cover;
 }
 
-.profile__background {
+.profile__update {
+    cursor: pointer;
+    position: absolute;
+    left: 26px;
+    top: -27px;
+    font-size: 1.8rem;
+    background: transparent;
+    border: none;
+    color: #c6eeff;
+    opacity: 0;
+    transition: all .5s;
+}
 
+.profile__update:hover {
+    opacity: 1;
 }
 
 .profile__fullname {
