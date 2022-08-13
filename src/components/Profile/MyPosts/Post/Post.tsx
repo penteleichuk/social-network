@@ -13,7 +13,6 @@ export type PostType = {
 }
 
 export const Post = (props: PostType) => {
-    console.log(props.profile?.photos?.small)
     const photo = props.profile?.photos?.small ? props.profile.photos.small : authorImg;
 
     return (

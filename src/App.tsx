@@ -14,6 +14,7 @@ const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsCo
 const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
 const Login = React.lazy(() => import('./components/Login/Login'));
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
+const SettingsContainer = React.lazy(() => import('./components/Settings/SettingsContainer'));
 
 class App extends React.Component<any, AppStateType> {
     componentDidMount() {
@@ -37,6 +38,7 @@ class App extends React.Component<any, AppStateType> {
                             <Route path='/profile/*' element={<ProfileContainer />} />
                             <Route path='/users' element={<UsersContainer />} />
                             <Route path='/login' element={<Login />} />
+                            <Route path='/settings' element={<SettingsContainer />} />
                         </Routes>
                     </Suspense>
                 </div>

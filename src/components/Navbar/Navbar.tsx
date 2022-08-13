@@ -26,7 +26,9 @@ export const Navbar = () => {
                 </NavLink>
             </div>
             <div className={style.item}>
-                <a className={style.link} href="/settings"><FontAwesomeIcon icon={faUserCog as IconProp} />Settings</a>
+                <NavLink to="/settings" className={({ isActive }) => isActive ? style.active : style.link}>
+                    <FontAwesomeIcon icon={faUserCog as IconProp} />Settings
+                </NavLink>
             </div>
         </nav>
     )

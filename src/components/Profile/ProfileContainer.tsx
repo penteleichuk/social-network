@@ -1,4 +1,4 @@
-import { useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { Profile } from "./Profile";
 import { connect } from "react-redux";
 import { getProfile, getStatus, updatePhoto, updateStatus } from "../../redux/reducers/profile-reducer";
@@ -11,8 +11,7 @@ const ProfileContainer = (props: any) => {
     const navigate = useNavigate();
     let userId = (props.match) ? props.match.params.userId : null;
 
-    useLayoutEffect(() => {
-
+    useEffect(() => {
         if (!userId) {
             userId = props.userId;
 
@@ -20,7 +19,9 @@ const ProfileContainer = (props: any) => {
                 navigate('/login');
             }
         }
+    }, [])
 
+    useLayoutEffect(() => {
         props.getProfile(userId);
         props.getStatus(userId);
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -56,6 +57,7 @@ export type ProfilePropsType = {
 } | null
 
 const mapStateToProps = (state: AppStateType): { profile: ProfilePropsType, status: string | undefined, userId: number | null, isAuth: boolean } => {
+
     return {
         profile: state.profilePage.profile,
         status: state.profilePage.status,

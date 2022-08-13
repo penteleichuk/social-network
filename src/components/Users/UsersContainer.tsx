@@ -66,7 +66,7 @@ export type UserType = {
 }
 export type UsersPropsType = mapDispatchToPropsType & mapStateToPropsType
 
-// Dispatch connect
+// Props connect
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         users: getUsersSelector(state),
@@ -78,12 +78,9 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     }
 }
 
-
+// Dispatch connect
 const mapDispatchToProps: mapDispatchToPropsType = {
     follow, unFollow, setCurrentPage, getUsers: requestUsers
 };
 
-export default compose<any>(
-    connect(mapStateToProps, mapDispatchToProps),
-    // withAuthRedirect
-)(UsersContainer);
+export default compose<any>(connect(mapStateToProps, mapDispatchToProps))(UsersContainer);
