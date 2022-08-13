@@ -4,7 +4,8 @@ import { Settings } from "./Settings";
 import { ProfilePropsType } from "../Profile/ProfileContainer";
 import { compose } from "redux";
 import { connect } from 'react-redux';
-import { getProfile } from "../../redux/reducers/profile-reducer";
+import { getProfile, updateProfile } from "../../redux/reducers/profile-reducer";
+import { UpdateRequestType } from "../../api/api";
 
 class SettingsContainer extends React.Component<any, mapStateToPropsType> {
 
@@ -13,7 +14,7 @@ class SettingsContainer extends React.Component<any, mapStateToPropsType> {
 	}
 
 	render(): React.ReactNode {
-		return <Settings profile={this.props.profile} userId={this.props.userId} />
+		return <Settings updateHandler={this.props.updateProfile} profile={this.props.profile} userId={this.props.userId} />
 	}
 }
 
@@ -24,6 +25,7 @@ type mapStateToPropsType = {
 
 type mapDispatchToPropsType = {
 	getProfile: (userId: number) => void
+	updateProfile: (data: UpdateRequestType) => void
 }
 
 // Props connect
@@ -35,9 +37,8 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 }
 
 const mapDispatchToProps: mapDispatchToPropsType = {
-	getProfile
+	getProfile, updateProfile
 };
 
 export type SettingsPropsType = mapDispatchToPropsType & mapStateToPropsType;
-
 export default compose<any>(connect(mapStateToProps, mapDispatchToProps))(SettingsContainer);

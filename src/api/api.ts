@@ -51,6 +51,10 @@ export const profileAPI = {
 			},
 		});
 	},
+
+	update(data: UpdateRequestType) {
+		return instance.put(`profile`, data);
+	},
 };
 
 export const authAPI = {
@@ -71,4 +75,17 @@ export const authAPI = {
 	getCaptcha() {
 		return instance.get<{ url: string }>(`security/get-captcha-url`);
 	},
+};
+
+export type UpdateRequestType = {
+	fullName: string | undefined;
+	aboutMe: string | undefined;
+	lookingForAJob: string | undefined;
+	lookingForAJobDescription: string | undefined;
+	contacts: {
+		facebook: string | undefined;
+		twitter: string | undefined;
+		github: string | undefined;
+		youtube: string | undefined;
+	};
 };

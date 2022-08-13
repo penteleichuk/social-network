@@ -12,8 +12,8 @@ export const ProfilePassport = (props: any) => {
 		<div>
 			<ProfilePassportItem title={'Full Name'} value={props.profile.fullName} isTrue={props.profile.fullName} isFalse={"-"} />
 			<ProfilePassportItem title={'About Me'} value={props.profile.aboutMe} isTrue={props.profile.aboutMe} isFalse={"-"} />
-			<ProfilePassportItem title={'Looking for a job'} value={props.lookingForAJob} isTrue={'Yes'} isFalse={"No"} />
-			<ProfilePassportItem title={'Description'} value={props.lookingForAJobDescription} isTrue={props.lookingForAJobDescription} isFalse={"-"} />
+			<ProfilePassportItem title={'Looking for a job'} value={props.profile.lookingForAJob} isTrue={'Yes'} isFalse={"No"} />
+			<ProfilePassportItem title={'Description'} value={props.profile.lookingForAJobDescription} isTrue={props.profile.lookingForAJobDescription} isFalse={"-"} />
 		</div>
 		<div>
 			<ProfilePassportContacts title={'Facebook'} value={props.profile.contacts.facebook} />

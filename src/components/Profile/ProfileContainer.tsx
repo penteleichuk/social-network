@@ -33,21 +33,21 @@ export type ProfilePhotosType = {
     large: string | null | undefined
 }
 type ProfileContactsType = {
-    facebook: string | null
-    website: string | null
-    vk: string | null
-    twitter: string | null
-    instagram: string | null
-    youtube: string | null
-    github: string | null
-    mainLink: string | null
+    facebook: string | null | undefined
+    website: string | null | undefined
+    vk: string | null | undefined
+    twitter: string | null | undefined
+    instagram: string | null | undefined
+    youtube: string | null | undefined
+    github: string | null | undefined
+    mainLink: string | null | undefined
 }
 export type ProfilePropsType = {
-    aboutMe?: string | null
+    aboutMe?: string | null | undefined
     contacts?: ProfileContactsType,
     lookingForAJob?: boolean
-    lookingForAJobDescription?: string
-    fullName?: string
+    lookingForAJobDescription?: string | undefined
+    fullName?: string | undefined
     userId?: number
     photos?: ProfilePhotosType
 } | null

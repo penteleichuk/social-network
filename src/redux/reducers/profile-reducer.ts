@@ -3,7 +3,7 @@ import {
 	ProfilePhotosType,
 	ProfilePropsType,
 } from '../../components/Profile/ProfileContainer';
-import { profileAPI, usersAPI } from '../../api/api';
+import { profileAPI, UpdateRequestType, usersAPI } from '../../api/api';
 
 // Const action
 const ADD_POST = 'PROFILE/ADD-POST';
@@ -28,6 +28,7 @@ type SetUserPhotosActionType = {
 	type: typeof SET_USER_PHOTOS;
 	files: ProfilePhotosType;
 };
+
 type ActionsType =
 	| AddPostActionType
 	| SetUserProfileActionType
@@ -132,3 +133,13 @@ export const updatePhoto = (file: string) => async (dispatch: any) => {
 		}
 	} catch (e) {}
 };
+
+export const updateProfile =
+	(data: UpdateRequestType) => async (dispatch: any) => {
+		try {
+			const res = await profileAPI.update(data);
+			if (res.data.resultCode === 0) {
+				console.log('success');
+			}
+		} catch (e) {}
+	};
