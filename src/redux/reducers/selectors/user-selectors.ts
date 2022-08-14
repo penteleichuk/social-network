@@ -6,9 +6,7 @@ export const getUsers = (state: AppStateType): Array<UserType> => {
 	return state.usersPage.users;
 };
 
-export const getUsersSelector = createSelector(getUsers, users => {
-	return users;
-});
+export const getUsersSelector = createSelector(getUsers, users => users);
 
 export const getPageSize = (state: AppStateType): number => {
 	return state.usersPage.pageSize;

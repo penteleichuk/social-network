@@ -10,54 +10,14 @@ const SET_TOTAL_USERS_COUNT = 'USER/SET_TOTAL_USERS_COUNT';
 const TOOGLE_IS_FETCHING = 'USER/TOOGLE_IS_FETCHINGT';
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'USER/TOGGLE_IS_FOLLOWING_PROGRESS';
 
-// Action type
-type FollowActionType = {
-	type: typeof FOLLOW;
-	userID: number;
-};
-type UnFollowActionType = {
-	type: typeof UNFOLLOW;
-	userID: number;
-};
-type SetUsersType = {
-	type: typeof SET_USERS;
-	users: Array<UserType>;
-};
-type setCurrentPageType = {
-	type: typeof SET_CURRENT_PATE;
-	pageNumber: number;
-};
-type setTotalUsersCountType = {
-	type: typeof SET_TOTAL_USERS_COUNT;
-	usersCount: number;
-};
-type setIsFetchingType = {
-	type: typeof TOOGLE_IS_FETCHING;
-	isFetching: boolean;
-};
-type SetIsFollowingProgress = {
-	type: typeof TOGGLE_IS_FOLLOWING_PROGRESS;
-	isFetching: boolean;
-	userId: number;
-};
-type ActionsType =
-	| FollowActionType
-	| UnFollowActionType
-	| SetUsersType
-	| setCurrentPageType
-	| setTotalUsersCountType
-	| setIsFetchingType
-	| SetIsFollowingProgress;
+type FollowActionType = ReturnType<typeof followSuccess>;
+type UnFollowActionType = ReturnType<typeof unFollowSuccess>;
+type SetUsersType = ReturnType<typeof setUsers>;
+type setCurrentPageType = ReturnType<typeof setCurrentPage>;
+type setTotalUsersCountType = ReturnType<typeof setTotalUsersCount>;
+type setIsFetchingType = ReturnType<typeof setIsFetching>;
+type SetIsFollowingProgress = ReturnType<typeof setIsFollowingProgress>;
 
-// Init
-export type initialStateType = {
-	users: Array<UserType>;
-	pageSize: number;
-	totalUsersCount: number;
-	currentPage: number;
-	isFetching: boolean;
-	followingInProgress: Array<number>;
-};
 const initialState: initialStateType = {
 	users: [],
 	pageSize: 10,
@@ -123,41 +83,45 @@ export const usersReducer = (
 	}
 };
 
+type ActionsType =
+	| FollowActionType
+	| UnFollowActionType
+	| SetUsersType
+	| setCurrentPageType
+	| setTotalUsersCountType
+	| setIsFetchingType
+	| SetIsFollowingProgress;
+
+export type initialStateType = {
+	users: Array<UserType>;
+	pageSize: number;
+	totalUsersCount: number;
+	currentPage: number;
+	isFetching: boolean;
+	followingInProgress: Array<number>;
+};
+
 // Action creator
-export const followSuccess = (userID: number): FollowActionType => ({
-	type: FOLLOW,
-	userID,
-});
-export const unFollowSuccess = (userID: number): UnFollowActionType => ({
-	type: UNFOLLOW,
-	userID,
-});
-export const setUsers = (users: Array<UserType>): SetUsersType => ({
-	type: SET_USERS,
-	users,
-});
-export const setCurrentPage = (pageNumber: number): setCurrentPageType => ({
-	type: SET_CURRENT_PATE,
-	pageNumber,
-});
-export const setTotalUsersCount = (
-	usersCount: number
-): setTotalUsersCountType => ({
-	type: SET_TOTAL_USERS_COUNT,
-	usersCount,
-});
-export const setIsFetching = (isFetching: boolean): setIsFetchingType => ({
-	type: TOOGLE_IS_FETCHING,
-	isFetching,
-});
-export const setIsFollowingProgress = (
-	isFetching: boolean,
-	userId: number
-): SetIsFollowingProgress => ({
-	type: TOGGLE_IS_FOLLOWING_PROGRESS,
-	isFetching,
-	userId,
-});
+export const followSuccess = (userID: number) =>
+	({ type: FOLLOW, userID } as const);
+
+export const unFollowSuccess = (userID: number) =>
+	({ type: UNFOLLOW, userID } as const);
+
+export const setUsers = (users: Array<UserType>) =>
+	({ type: SET_USERS, users } as const);
+
+export const setCurrentPage = (pageNumber: number) =>
+	({ type: SET_CURRENT_PATE, pageNumber } as const);
+
+export const setTotalUsersCount = (usersCount: number) =>
+	({ type: SET_TOTAL_USERS_COUNT, usersCount } as const);
+
+export const setIsFetching = (isFetching: boolean) =>
+	({ type: TOOGLE_IS_FETCHING, isFetching } as const);
+
+export const setIsFollowingProgress = (isFetching: boolean, userId: number) =>
+	({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId } as const);
 
 // THUNK
 export const requestUsers =
