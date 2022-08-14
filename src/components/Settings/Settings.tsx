@@ -4,6 +4,17 @@ import { Field, Form, Formik } from "formik";
 import * as yup from 'yup';
 import style from './Settings.module.css'
 
+const validationSchema = yup.object({
+	fullName: yup.string().required('Required'),
+	aboutMe: yup.string().required('Required'),
+	lookingForAJobDescription: yup.string().required('Required'),
+	facebook: yup.string(),
+	twitter: yup.string(),
+	github: yup.string(),
+	youtube: yup.string(),
+	lookingForAJob: yup.boolean(),
+});
+
 export const Settings = (props: any) => {
 	const navigate = useNavigate();
 
@@ -11,18 +22,7 @@ export const Settings = (props: any) => {
 		if (!props.userId) {
 			navigate('/login');
 		}
-	}, [])
-
-	const validationSchema = yup.object({
-		fullName: yup.string().required('Required'),
-		aboutMe: yup.string().required('Required'),
-		lookingForAJobDescription: yup.string().required('Required'),
-		facebook: yup.string(),
-		twitter: yup.string(),
-		github: yup.string(),
-		youtube: yup.string(),
-		lookingForAJob: yup.boolean(),
-	});
+	}, [navigate, props.userId])
 
 	const onSaveHandler = (data: any) => {
 		const requestData = {

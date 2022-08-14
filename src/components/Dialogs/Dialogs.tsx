@@ -1,28 +1,24 @@
 import { DialogItem } from "./DialogItem/DialogItem";
 import { Message } from "./Message/Message";
 import { DialogsPropsType } from "./DialogsContainer";
-import s from './Dialogs.module.css'
 import { DialogForm } from "../Form/DialogForm";
+import styles from './Dialogs.module.css'
 
 const Dialogs = (props: DialogsPropsType) => {
-    let state = props.dialogsPage;
+    const { sendMessage, dialogsPage } = props;
 
-    let dialogsElements = state.dialogs.map((d, index) => <DialogItem key={index} name={d.name} id={d.id} />);
-    let messagesElements = state.messages.map((m, index) => <Message key={index} message={m.message} />);
-
-    const onSubmit = ({ message }: { message: string }) => {
-        props.sendMessage(message);
-    }
+    const dialogsRender = dialogsPage.dialogs.map((el, index) => <DialogItem key={index} name={el.name} id={el.id} />);
+    const messagesRender = dialogsPage.messages.map((el, index) => <Message key={index} message={el.message} />);
 
     return (
         <div className="content">
-            <div className={s.dialogs}>
-                <div className={s.dialogItems}>
-                    {dialogsElements}
+            <div className={styles.dialogs}>
+                <div className={styles.dialogItems}>
+                    {dialogsRender}
                 </div>
-                <div className={s.messages}>
-                    <div>{messagesElements}</div>
-                    <DialogForm onSubmit={onSubmit} />
+                <div className={styles.messages}>
+                    <div>{messagesRender}</div>
+                    <DialogForm onSubmit={sendMessage} />
                 </div>
             </div>
         </div>

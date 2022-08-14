@@ -1,13 +1,13 @@
-import styles from "./Users.module.css";
-import userPhoto from "../../assets/images/author.jpeg";
 import { UserType } from "./UsersContainer";
 import { Pagination } from "../Common/Pagination/Pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
+import { faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import userPhoto from "../../assets/images/author.jpeg";
+import styles from "./Users.module.css";
 
-type UsersPPropsType = {
+type UsersPropsType = {
     totalUsersCount: number
     pageSize: number
     currentPage: number
@@ -18,7 +18,7 @@ type UsersPPropsType = {
     followingInProgress: Array<number>
 }
 
-export const Users = (props: UsersPPropsType) => {
+export const Users = (props: UsersPropsType) => {
     return (
         <div className={styles.users}>
             <div className={styles.usersTitle}>

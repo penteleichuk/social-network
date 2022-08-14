@@ -1,6 +1,5 @@
 import { UserType } from '../../components/Users/UsersContainer';
 import { usersAPI } from '../../api/api';
-import { DispatchProp } from 'react-redux';
 
 // Const action
 const FOLLOW = 'USER/FOLLOW';

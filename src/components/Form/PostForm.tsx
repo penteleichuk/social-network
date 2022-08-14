@@ -1,31 +1,37 @@
 
-import { Field, Form, Formik } from 'formik'
+import { Field, Form, Formik, FormikValues } from 'formik'
 import * as yup from 'yup';
-import style from './../Profile/MyPosts/MyPosts.module.css'
+import styles from './../Profile/MyPosts/MyPosts.module.css'
 
-export const PostForm = (props: any) => {
-	const validationSchema = yup.object({
-		post: yup.string().typeError('Invalid login').required('Required')
-	})
+type PostFormPropsType = {
+	onSubmit: (post: string) => void
+}
+
+const validationSchema = yup.object({
+	post: yup.string().typeError('Invalid login').required('Required')
+})
+
+export const PostForm = (props: PostFormPropsType) => {
+	const onSubmitHandler = (post: { post: string }, { resetForm }: FormikValues) => {
+		props.onSubmit(post.post);
+		resetForm({})
+	}
 
 	return (
-		<Formik initialValues={{ post: '' }} validateOnBlur
-			onSubmit={(post, { resetForm }) => {
-				props.onSubmit(post);
-				resetForm({})
-			}} validationSchema={validationSchema}>
-			{({ values, errors, touched, handleChange, handleBlur, isValid, dirty }) => (
+		<Formik initialValues={{ post: '' }} onSubmit={onSubmitHandler} validationSchema={validationSchema} validateOnBlur>
+			{({ errors, touched, handleChange, handleBlur, isValid, dirty }) => (
 				<Form>
-					<div className={style.addPost}>
-						<div className={style.addPost__title}>Write a new post... {touched.post && errors.post && <span>{errors.post}</span>}</div>
+					<div className={styles.addPost}>
+						<div className={styles.addPost__title}>
+							Write a new post... {touched.post && errors.post && <span>{errors.post}</span>}
+						</div>
 						<div className="textarea">
 							<Field className={'textarea'} component={'textarea'} name="post" onBlur={handleBlur} onChange={handleChange} />
-							<button disabled={!isValid && !dirty} type={'submit'} >Add</button>
+							<button disabled={!isValid && !dirty} type={'submit'} >Post</button>
 						</div>
 					</div>
 				</Form>
 			)}
-
 		</Formik>
 	)
 }

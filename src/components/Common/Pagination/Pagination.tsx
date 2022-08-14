@@ -1,5 +1,5 @@
 import styles from "./Pagination.module.css";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 type PaginationPropsType = {
     totalItemsCount: number
@@ -9,7 +9,8 @@ type PaginationPropsType = {
     onPageChanged: (pageNumber: number) => void
 }
 
-export const Pagination = ({ totalItemsCount, pageSize, currentPage, onPageChanged, partionSize = 10 }: PaginationPropsType) => {
+export const Pagination = (props: PaginationPropsType) => {
+    const { totalItemsCount, pageSize, currentPage, onPageChanged, partionSize = 10 } = props;
     const pagesCount = Math.ceil(totalItemsCount / pageSize);
     const pages = [];
     for (let i = 1; i <= totalItemsCount; i++) {
@@ -21,13 +22,8 @@ export const Pagination = ({ totalItemsCount, pageSize, currentPage, onPageChang
     const leftPartionPageNumber = (partionNumber - 1) * partionSize + 1;
     const rightPartionPageNumber = partionNumber * partionSize;
 
-    const setPartionNumberPrevHandler = () => {
-        setPartionNumber(partionNumber - 1);
-    }
-
-    const setPartionNumberNextHandler = () => {
-        setPartionNumber(partionNumber + 1);
-    }
+    const setPartionNumberPrevHandler = () => setPartionNumber(partionNumber - 1);
+    const setPartionNumberNextHandler = () => setPartionNumber(partionNumber + 1);
 
     useEffect(() => {
         setPartionNumber(Math.ceil(currentPage / partionSize))

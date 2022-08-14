@@ -2,6 +2,7 @@
 import { Dispatch } from 'redux';
 import { authAPI } from '../../api/api';
 import { LoginPropsType } from '../../components/Login/Login';
+import { FormikValues } from 'formik';
 
 const SET_USER_DATA = 'AUTH/SET_USER_DATA';
 const SET_AUTH_CAPTCHA = 'AUTH/SET_AUTH_CAPTCHA';
@@ -93,7 +94,7 @@ export const getAuthUserData = () => async (dispatch: Dispatch) => {
 };
 
 export const login =
-	(values: LoginPropsType, actions: any) => async (dispatch: any) => {
+	(values: LoginPropsType, actions: FormikValues) => async (dispatch: any) => {
 		try {
 			const res = await authAPI.login(
 				values.login,
@@ -108,7 +109,6 @@ export const login =
 			} else if (res.data.resultCode === 10) {
 				dispatch(getCaptcha());
 			}
-
 			actions.setStatus({ error: res.data.messages[0] });
 		} catch (e) {}
 	};

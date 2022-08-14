@@ -21,20 +21,18 @@ class UsersContainer extends React.Component<any, mapStateToPropsType> {
         this.props.getUsers(pageNumber, this.props.pageSize);
     }
 
-    render() {
-        return <div className="content">
-            {this.props.isFetching && <Preloader />}
-            <Users totalUsersCount={this.props.totalUsersCount}
-                pageSize={this.props.pageSize}
-                currentPage={this.props.currentPage}
-                onPageChanged={this.onPageChanged}
-                users={this.props.users}
-                follow={this.props.follow}
-                unFollow={this.props.unFollow}
-                followingInProgress={this.props.followingInProgress}
-            />
-        </div>
-    }
+    render = () => <div className="content">
+        {this.props.isFetching && <Preloader />}
+        <Users totalUsersCount={this.props.totalUsersCount}
+            pageSize={this.props.pageSize}
+            currentPage={this.props.currentPage}
+            onPageChanged={this.onPageChanged}
+            users={this.props.users}
+            follow={this.props.follow}
+            unFollow={this.props.unFollow}
+            followingInProgress={this.props.followingInProgress}
+        />
+    </div>
 }
 
 // Dispatch type

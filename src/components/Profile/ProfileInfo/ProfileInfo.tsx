@@ -1,13 +1,13 @@
-import { Preloader } from "../../Common/Preloader/Preloader";
-import ProfileStatus from './ProfileStatus/ProfileStatus';
 import { ChangeEvent, useRef } from 'react';
 import { useDispatch } from 'react-redux';
+import { Preloader } from "../../Common/Preloader/Preloader";
+import ProfileStatus from './ProfileStatus/ProfileStatus';
 import { faCloudUploadAlt } from "@fortawesome/free-solid-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ProfilePassport } from "./ProfilePassport";
-import style from './ProfileInfo.module.css';
 import authorImg from "../../../assets/images/author.jpeg";
+import styles from './ProfileInfo.module.css';
 
 export const ProfileInfo = (props: any) => {
     const { updatePhoto, isOwner, profile, status, updateStatus } = props;
@@ -27,9 +27,9 @@ export const ProfileInfo = (props: any) => {
     }
 
     return (
-        <div className={style.profile} >
-            <div className={style.wrapper}>
-                <div className={style.photo}>
+        <div className={styles.profile} >
+            <div className={styles.wrapper}>
+                <div className={styles.photo}>
 
                     <img src={profile.photos.small || authorImg} alt="" />
                     {isOwner && <input
@@ -39,13 +39,13 @@ export const ProfileInfo = (props: any) => {
                         style={{ display: 'none' }}
                         onChange={uploadPhotoHandler} />}
 
-                    {isOwner && <button className={style.update} onClick={() => refImg && refImg.current && refImg.current.click()}>
+                    {isOwner && <button className={styles.update} onClick={() => refImg && refImg.current && refImg.current.click()}>
                         <FontAwesomeIcon icon={faCloudUploadAlt as IconProp} />
                     </button>}
 
                     <ProfileStatus isOwner={isOwner} status={status} updateStatus={updateStatus} />
                 </div>
-                <div className={style.descrition}>
+                <div className={styles.descrition}>
                     <ProfilePassport profile={profile} />
                 </div>
             </div>

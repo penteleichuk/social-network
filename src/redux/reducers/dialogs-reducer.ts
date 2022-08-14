@@ -40,7 +40,6 @@ export const dialogsReducer = (state = initialState, action: ActionsType) => {
 				messages: [...state.messages, { id: 6, message: action.message }],
 			};
 		}
-
 		default: {
 			return state;
 		}

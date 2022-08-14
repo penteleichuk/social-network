@@ -1,3 +1,4 @@
+import { FormikValues } from "formik";
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { login } from "../../redux/reducers/auth-reducer";
@@ -11,23 +12,34 @@ export type LoginPropsType = {
   captcha: string
 }
 
-const mapStateToProps = (state: AppStateType): { isAuth: boolean, captcha: string | null } => {
+const Login = (props: (mapStateToPropsType & mapDispatchToPropsType)) => {
+  if (props.isAuth) {
+    return <Navigate to={'/profile'} />
+  }
+
+  return <LoginForm onSubmit={props.login} captcha={props.captcha} />
+}
+
+type mapDispatchToPropsType = {
+  login: (values: LoginPropsType, actions: FormikValues) => void
+}
+
+const mapDispatchToProps = (): mapDispatchToPropsType => {
+  return {
+    login
+  }
+}
+
+type mapStateToPropsType = {
+  isAuth: boolean
+  captcha: string | null
+}
+
+const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
   return {
     isAuth: state.auth.isAuth,
-    captcha: state.auth.captcha
+    captcha: state.auth.captcha,
   }
 }
 
-const Login = (props: any) => {
-  if (props.isAuth) return <Navigate to={'/profile'} />
-
-  const onSubmit = (values: LoginPropsType, actions: any) => {
-    props.login({ ...values }, actions);
-  }
-
-  return (
-    <LoginForm onSubmit={onSubmit} captcha={props.captcha} />
-  );
-}
-
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

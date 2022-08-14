@@ -8,19 +8,18 @@ import { compose } from "redux";
 import { useNavigate } from "react-router-dom";
 
 const ProfileContainer = (props: any) => {
+    const userId = (props.match) ? props.match.params.userId : props.userId;
     const navigate = useNavigate();
-    let userId = (props.match) ? props.match.params.userId : props.userId;
 
     useEffect(() => {
         if (!userId) {
             navigate('/login');
         }
-    }, [])
+    }, [navigate, userId])
 
     useLayoutEffect(() => {
         props.getProfile(userId);
         props.getStatus(userId);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userId])
 
     return (
@@ -53,7 +52,6 @@ export type ProfilePropsType = {
 } | null
 
 const mapStateToProps = (state: AppStateType): { profile: ProfilePropsType, status: string | undefined, userId: number | null, isAuth: boolean } => {
-
     return {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
@@ -63,7 +61,4 @@ const mapStateToProps = (state: AppStateType): { profile: ProfilePropsType, stat
 }
 
 export default compose<any>(
-    connect(mapStateToProps, { getProfile, getStatus, updateStatus, updatePhoto }),
-    withRouter,
-    // withAuthRedirect,
-)(ProfileContainer)
+    connect(mapStateToProps, { getProfile, getStatus, updateStatus, updatePhoto }), withRouter)(ProfileContainer)
