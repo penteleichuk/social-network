@@ -7,6 +7,7 @@ import { withRouter } from "../../hoc/withRouter";
 import { compose } from "redux";
 import { RouteMatch, useNavigate } from "react-router-dom";
 import { ProfilePropsType } from "../../api/profileAPI";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 
 type ProfileConatainerType = mapStateToPropsType & mapDispatchToPropsType & { match?: RouteMatch };
 
@@ -58,5 +59,6 @@ const mapDispatchToProps = () => ({
 
 export default compose<React.ComponentType>(
     connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect,
     withRouter)
     (ProfileContainer)

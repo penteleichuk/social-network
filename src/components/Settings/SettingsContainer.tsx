@@ -5,6 +5,7 @@ import { compose } from "redux";
 import { connect } from 'react-redux';
 import { getProfile, updateProfile } from "../../redux/reducers/profile-reducer";
 import { ProfilePropsType, UpdateRequestType } from "../../api/profileAPI";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 
 class SettingsContainer extends React.Component<SettingsPropsType, mapStateToPropsType> {
 
@@ -21,14 +22,15 @@ class SettingsContainer extends React.Component<SettingsPropsType, mapStateToPro
 		},
 	}
 
-	componentDidMount(): void {
-		this.props.getProfile(this.props.userId);
-	}
+	// componentDidMount(): void {
+	// 	this.props.getProfile(this.props.userId);
+	// }
 
 	render(): React.ReactNode {
 		return <Settings
 			userId={this.props.userId}
 			updateHandler={this.props.updateProfile}
+			getProfile={this.props.getProfile}
 			profile={this.profile} />
 	}
 }
@@ -56,4 +58,4 @@ const mapDispatchToProps: mapDispatchToPropsType = {
 };
 
 export type SettingsPropsType = mapDispatchToPropsType & mapStateToPropsType;
-export default compose<React.ComponentType>(connect(mapStateToProps, mapDispatchToProps))(SettingsContainer);
+export default compose<React.ComponentType>(connect(mapStateToProps, mapDispatchToProps), withAuthRedirect)(SettingsContainer);

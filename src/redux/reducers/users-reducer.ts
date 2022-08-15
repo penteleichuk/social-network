@@ -25,7 +25,7 @@ export type UsersType = typeof initialState;
 
 export const usersReducer = (
 	state: initialStateType = initialState,
-	action: ActionsType
+	action: UsersActionsType
 ): initialStateType => {
 	switch (action.type) {
 		case FOLLOW: {
@@ -87,7 +87,7 @@ type setTotalUsersCountType = ReturnType<typeof setTotalUsersCount>;
 type setIsFetchingType = ReturnType<typeof setIsFetching>;
 type SetIsFollowingProgress = ReturnType<typeof setIsFollowingProgress>;
 
-type ActionsType =
+export type UsersActionsType =
 	| FollowActionType
 	| UnFollowActionType
 	| SetUsersType

@@ -1,5 +1,5 @@
 import React from "react";
-import { compose } from 'redux';
+import { compose, Dispatch } from 'redux';
 import { connect } from "react-redux";
 import { Header, HeaderPropsType } from "./Header";
 import { logout } from "../../redux/reducers/auth-reducer";
@@ -14,9 +14,9 @@ type mapDispatchToPropsType = {
     logout: () => void
 }
 
-const mapDispatchToProps = (): mapDispatchToPropsType => {
+const mapDispatchToProps = (dispatch: any): mapDispatchToPropsType => {
     return {
-        logout
+        logout: () => dispatch(logout())
     }
 }
 

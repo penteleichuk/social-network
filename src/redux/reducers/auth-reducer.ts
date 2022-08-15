@@ -3,6 +3,7 @@ import { Dispatch } from 'redux';
 import { LoginPropsType } from '../../components/Login/Login';
 import { FormikValues } from 'formik';
 import { authAPI } from '../../api/authAPI';
+import { AppThunk } from '../redux-store';
 
 const SET_USER_DATA = 'AUTH/SET_USER_DATA';
 const SET_AUTH_CAPTCHA = 'AUTH/SET_AUTH_CAPTCHA';
@@ -20,7 +21,7 @@ type initialStateType = typeof initialState;
 
 export const authReducer = (
 	state: initialStateType = initialState,
-	action: ActionsType
+	action: AuthActionsType
 ): initialStateType => {
 	switch (action.type) {
 		case SET_USER_DATA: {
@@ -43,7 +44,9 @@ export const authReducer = (
 
 type SetAuthUserDataActionType = ReturnType<typeof setAuthUserData>;
 type SetAuthCaptchaActionType = ReturnType<typeof setAuthCaptcha>;
-type ActionsType = SetAuthUserDataActionType | SetAuthCaptchaActionType;
+export type AuthActionsType =
+	| SetAuthUserDataActionType
+	| SetAuthCaptchaActionType;
 
 // Action creator
 export const setAuthUserData = (
@@ -73,7 +76,8 @@ export const getAuthUserData = () => async (dispatch: Dispatch) => {
 };
 
 export const login =
-	(values: LoginPropsType, actions: FormikValues) => async (dispatch: any) => {
+	(values: LoginPropsType, actions: FormikValues): AppThunk =>
+	async dispatch => {
 		try {
 			const res = await authAPI.login(
 				values.login,
@@ -96,7 +100,7 @@ export const logout = () => async (dispatch: Dispatch) => {
 	try {
 		const res = await authAPI.logout();
 		if (res.data.resultCode === 0) {
-			dispatch(setAuthUserData(0, '', '', true));
+			dispatch(setAuthUserData(0, '', '', false));
 		}
 	} catch (e) {}
 };

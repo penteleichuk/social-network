@@ -1,11 +1,10 @@
-import thunk from 'redux-thunk';
+import thunk, { ThunkAction } from 'redux-thunk';
 import { applyMiddleware, combineReducers, createStore } from 'redux';
-
-import { dialogsReducer } from './reducers/dialogs-reducer';
-import { profileReducer } from './reducers/profile-reducer';
-import { usersReducer } from './reducers/users-reducer';
-import { authReducer } from './reducers/auth-reducer';
-import { appReducer } from './reducers/app-reducer';
+import { DialogsActionsType, dialogsReducer } from './reducers/dialogs-reducer';
+import { ProfileActionsType, profileReducer } from './reducers/profile-reducer';
+import { UsersActionsType, usersReducer } from './reducers/users-reducer';
+import { AuthActionsType, authReducer } from './reducers/auth-reducer';
+import { AppActionType, appReducer } from './reducers/app-reducer';
 
 const rootReducer = combineReducers({
 	profilePage: profileReducer,
@@ -16,5 +15,18 @@ const rootReducer = combineReducers({
 });
 
 export type AppStateType = ReturnType<typeof rootReducer>;
+type ActionsType =
+	| AppActionType
+	| AuthActionsType
+	| DialogsActionsType
+	| ProfileActionsType
+	| UsersActionsType;
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));
+
+export type AppThunk<ReturnType = void> = ThunkAction<
+	ReturnType,
+	AppStateType,
+	unknown,
+	ActionsType
+>;

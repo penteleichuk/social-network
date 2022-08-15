@@ -44,7 +44,7 @@ type initialStateType = typeof initialState;
 // Reducer
 export const profileReducer = (
 	state: initialStateType = initialState,
-	action: ActionsType
+	action: ProfileActionsType
 ): initialStateType => {
 	switch (action.type) {
 		case ADD_POST: {
@@ -75,7 +75,7 @@ type SetUserProfileActionType = ReturnType<typeof setUserProfile>;
 type SetUserStatusActionType = ReturnType<typeof setUserStatus>;
 type SetUserPhotosActionType = ReturnType<typeof setUserPhotos>;
 
-type ActionsType =
+export type ProfileActionsType =
 	| AddPostActionType
 	| SetUserProfileActionType
 	| SetUserStatusActionType

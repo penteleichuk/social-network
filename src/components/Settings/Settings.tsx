@@ -15,6 +15,7 @@ type onSaveHandlerType = {
 export type SettingsPropsType = {
 	profile: UpdateRequestType
 	userId: number
+	getProfile: (userId: number) => void
 	updateHandler: (data: UpdateRequestType) => void
 };
 
@@ -35,8 +36,10 @@ export const Settings = (props: SettingsPropsType) => {
 	useEffect(() => {
 		if (!props.userId) {
 			navigate('/login');
+		} else {
+			props.getProfile(props.userId)
 		}
-	}, [navigate, props.userId])
+	}, [props.userId])
 
 	const onSaveHandler = (data: onSaveHandlerType) => {
 		const requestData = {

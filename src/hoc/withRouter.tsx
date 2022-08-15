@@ -1,7 +1,8 @@
 import { useMatch, useNavigate } from "react-router-dom";
 
-export const withRouter = (Component: any) => {
-    const Wrapper = (props: any) => {
+export function withRouter<T>(Component: React.ComponentType<T>) {
+
+    const Wrapper = (props: T) => {
         const navigate = useNavigate();
         const match = useMatch('/profile/:userId/');
 

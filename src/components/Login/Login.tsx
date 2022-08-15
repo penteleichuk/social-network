@@ -24,9 +24,9 @@ type mapDispatchToPropsType = {
   login: (values: LoginPropsType, actions: FormikValues) => void
 }
 
-const mapDispatchToProps = (): mapDispatchToPropsType => {
+const mapDispatchToProps = (dispatch: any): mapDispatchToPropsType => {
   return {
-    login
+    login: (values: LoginPropsType, actions: FormikValues) => dispatch(login(values, actions))
   }
 }
 

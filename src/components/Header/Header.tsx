@@ -3,6 +3,7 @@ import { Navbar } from "../Navbar/Navbar";
 import Logo from '../../assets/images/logo.png'
 import { NavLink } from "react-router-dom";
 import style from './Header.module.css';
+import { useDispatch } from 'react-redux';
 
 export type HeaderPropsType = {
     isAuth: boolean
@@ -10,6 +11,8 @@ export type HeaderPropsType = {
 }
 
 export const Header = (props: HeaderPropsType & { logout: () => void }) => {
+    const dispatch = useDispatch();
+
     return (
         <header className={style.header}>
             <div className="wrapper header__wrapper">
