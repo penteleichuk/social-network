@@ -6,20 +6,36 @@ import { connect } from 'react-redux';
 import { getProfile, updateProfile } from "../../redux/reducers/profile-reducer";
 import { ProfilePropsType, UpdateRequestType } from "../../api/profileAPI";
 
-class SettingsContainer extends React.Component<any, mapStateToPropsType> {
+class SettingsContainer extends React.Component<SettingsPropsType, mapStateToPropsType> {
+
+	profile = {
+		fullName: this.props.profile.fullName,
+		aboutMe: this.props.profile.aboutMe,
+		lookingForAJob: this.props.profile.lookingForAJob,
+		lookingForAJobDescription: this.props.profile.lookingForAJobDescription,
+		contacts: {
+			facebook: this.props.profile.contacts.facebook,
+			twitter: this.props.profile.contacts.twitter,
+			github: this.props.profile.contacts.github,
+			youtube: this.props.profile.contacts.youtube,
+		},
+	}
 
 	componentDidMount(): void {
 		this.props.getProfile(this.props.userId);
 	}
 
 	render(): React.ReactNode {
-		return <Settings updateHandler={this.props.updateProfile} profile={this.props.profile} userId={this.props.userId} />
+		return <Settings
+			userId={this.props.userId}
+			updateHandler={this.props.updateProfile}
+			profile={this.profile} />
 	}
 }
 
 type mapStateToPropsType = {
 	profile: ProfilePropsType,
-	userId: number | null
+	userId: number
 }
 
 type mapDispatchToPropsType = {

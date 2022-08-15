@@ -3,6 +3,20 @@ import { useEffect } from 'react';
 import { Field, Form, Formik } from "formik";
 import * as yup from 'yup';
 import style from './Settings.module.css'
+import { UpdateContactsRequestType, UpdateRequestType } from "../../api/profileAPI";
+
+type onSaveHandlerType = {
+	fullName: string;
+	aboutMe: string;
+	lookingForAJob: boolean;
+	lookingForAJobDescription: string;
+} & UpdateContactsRequestType;
+
+export type SettingsPropsType = {
+	profile: UpdateRequestType
+	userId: number
+	updateHandler: (data: UpdateRequestType) => void
+};
 
 const validationSchema = yup.object({
 	fullName: yup.string().required('Required'),
@@ -15,7 +29,7 @@ const validationSchema = yup.object({
 	lookingForAJob: yup.boolean(),
 });
 
-export const Settings = (props: any) => {
+export const Settings = (props: SettingsPropsType) => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -24,7 +38,7 @@ export const Settings = (props: any) => {
 		}
 	}, [navigate, props.userId])
 
-	const onSaveHandler = (data: any) => {
+	const onSaveHandler = (data: onSaveHandlerType) => {
 		const requestData = {
 			fullName: data.fullName,
 			aboutMe: data.aboutMe,
@@ -44,14 +58,14 @@ export const Settings = (props: any) => {
 	return (
 		<Formik initialValues={
 			{
-				fullName: props.profile?.fullName || undefined,
-				aboutMe: props.profile?.aboutMe || undefined,
-				lookingForAJobDescription: props.profile?.lookingForAJobDescription || undefined,
-				facebook: props.profile?.contacts?.facebook || undefined,
-				twitter: props.profile?.contacts?.twitter || undefined,
-				github: props.profile?.contacts?.github || undefined,
-				youtube: props.profile?.contacts?.youtube || undefined,
-				lookingForAJob: props.profile?.lookingForAJob || false
+				fullName: props.profile.fullName,
+				aboutMe: props.profile.aboutMe,
+				lookingForAJobDescription: props.profile.lookingForAJobDescription,
+				facebook: props.profile.contacts.facebook,
+				twitter: props.profile.contacts.twitter,
+				github: props.profile.contacts.github,
+				youtube: props.profile.contacts.youtube,
+				lookingForAJob: props.profile.lookingForAJob,
 			}
 		} validateOnBlur onSubmit={onSaveHandler} validationSchema={validationSchema}>
 			{({ values, errors, touched, handleChange, handleBlur, isValid, dirty, status }) => (

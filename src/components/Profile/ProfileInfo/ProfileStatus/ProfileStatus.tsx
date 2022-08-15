@@ -1,6 +1,12 @@
 import React, { ChangeEvent } from "react";
 import styles from './../../ProfileInfo/ProfileInfo.module.css';
-class ProfileStatus extends React.Component<any, any> {
+
+type ProfileStatusPropsType = {
+    isOwner: boolean
+    status: string
+    updateStatus: (value: string) => void
+}
+class ProfileStatus extends React.Component<ProfileStatusPropsType> {
 
     state = {
         isOwner: this.props.isOwner,
@@ -8,7 +14,7 @@ class ProfileStatus extends React.Component<any, any> {
         status: this.props.status
     }
 
-    componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>) {
+    componentDidUpdate(prevProps: { status: string }, prevState: { status: string }) {
         if (prevProps.status !== this.props.status) {
             this.setState({
                 status: this.props.status

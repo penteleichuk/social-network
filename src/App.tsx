@@ -10,13 +10,12 @@ import { compose } from "redux";
 import "./App.css";
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer').then(({ DialogsContainer }) => ({ default: DialogsContainer })));
-
 const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
 const Login = React.lazy(() => import('./components/Login/Login'));
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
 const SettingsContainer = React.lazy(() => import('./components/Settings/SettingsContainer'));
 
-class App extends React.Component<any, AppStateType> {
+class App extends React.Component<mapStateToPropsType & mapDispatchToPropsType, AppStateType> {
     componentDidMount() {
         this.props.initializeApp()
     }
@@ -47,19 +46,21 @@ class App extends React.Component<any, AppStateType> {
     }
 }
 
-type mapDispatchType = {
+type mapStateToPropsType = {
+    initialized: boolean
+};
+
+type mapDispatchToPropsType = {
     initializeApp: () => void
 }
 
-const mapDispatchToProps: mapDispatchType = {
+const mapDispatchToProps: mapDispatchToPropsType = {
     initializeApp
 }
 
-const mapStateToProps = (state: AppStateType): { initialized: boolean } => {
-    return {
-        initialized: state.app.initialized
-    }
-}
+const mapStateToProps = (state: AppStateType): mapStateToPropsType => ({
+    initialized: state.app.initialized
+})
 
 export default compose<React.ComponentType>(
     connect(mapStateToProps, mapDispatchToProps),

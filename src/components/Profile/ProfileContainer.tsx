@@ -1,34 +1,47 @@
 import { useEffect, useLayoutEffect } from "react";
 import { Profile } from "./Profile";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { getProfile, getStatus, updatePhoto, updateStatus } from "../../redux/reducers/profile-reducer";
 import { AppStateType } from "../../redux/redux-store";
 import { withRouter } from "../../hoc/withRouter";
 import { compose } from "redux";
-import { useNavigate } from "react-router-dom";
+import { RouteMatch, useNavigate } from "react-router-dom";
 import { ProfilePropsType } from "../../api/profileAPI";
 
-const ProfileContainer = (props: any) => {
+type ProfileConatainerType = mapStateToPropsType & mapDispatchToPropsType & { match?: RouteMatch };
+
+const ProfileContainer = (props: ProfileConatainerType) => {
     const userId = (props.match) ? props.match.params.userId : props.userId;
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (!userId) {
             navigate('/login');
+        } else {
+            dispatch(props.getProfile(+userId));
+            dispatch(props.getStatus(+userId));
         }
-    }, [navigate, userId])
-
-    useLayoutEffect(() => {
-        props.getProfile(userId);
-        props.getStatus(userId);
-    }, [userId])
+    }, [navigate])
 
     return (
-        <Profile updatePhoto={updatePhoto} isOwner={!userId} profile={props.profile} status={props.status} updateStatus={props.updateStatus} />
+        <Profile
+            updatePhoto={updatePhoto}
+            updateStatus={props.updateStatus}
+            profile={props.profile}
+            isOwner={!userId}
+            status={props.status} />
     )
 }
 
-const mapStateToProps = (state: AppStateType): { profile: ProfilePropsType, status: string | undefined, userId: number | null, isAuth: boolean } => {
+type mapStateToPropsType = {
+    profile: ProfilePropsType
+    status: string
+    userId: number | null
+    isAuth: boolean
+}
+
+const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
@@ -37,7 +50,13 @@ const mapStateToProps = (state: AppStateType): { profile: ProfilePropsType, stat
     }
 }
 
+type mapDispatchToPropsType = ReturnType<typeof mapDispatchToProps>;
+
+const mapDispatchToProps = () => ({
+    getProfile, getStatus, updateStatus, updatePhoto
+})
+
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, { getProfile, getStatus, updateStatus, updatePhoto }),
+    connect(mapStateToProps, mapDispatchToProps),
     withRouter)
     (ProfileContainer)

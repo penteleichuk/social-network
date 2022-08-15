@@ -7,18 +7,11 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ProfilePassport } from "./ProfilePassport";
 import authorImg from "../../../assets/images/author.jpeg";
-import { ProfilePropsType } from '../../../api/profileAPI';
+import { ProfileComponentPropsType } from '../Profile';
 import styles from './ProfileInfo.module.css';
 
-type ProfileInfoPropsType = {
-    profile: ProfilePropsType
-    isOwner: boolean
-    status: string
-    updateStatus: (value: string) => void
-    updatePhoto: (files: string) => void
-}
 
-export const ProfileInfo = (props: ProfileInfoPropsType) => {
+export const ProfileInfo = (props: ProfileComponentPropsType) => {
     const { profile, isOwner, status, updatePhoto, updateStatus } = props;
     const dispatch = useDispatch();
 

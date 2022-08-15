@@ -8,7 +8,7 @@ const SET_USER_DATA = 'AUTH/SET_USER_DATA';
 const SET_AUTH_CAPTCHA = 'AUTH/SET_AUTH_CAPTCHA';
 
 const initialState = {
-	userId: null as number | null,
+	userId: 2,
 	email: null as string | null,
 	login: null as string | null,
 	isFetching: false,

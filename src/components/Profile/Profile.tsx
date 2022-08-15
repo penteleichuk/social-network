@@ -1,9 +1,18 @@
 import { ProfileInfo } from "./ProfileInfo/ProfileInfo";
 import { MyPostsContainer } from "./MyPosts/MyPostsContainer";
 import styles from './Profile.module.css';
+import { ProfilePropsType } from "../../api/profileAPI";
 
-export const Profile = (props: any) => {
-    const { updatePhoto, isOwner, profile, status, updateStatus } = props;
+export type ProfileComponentPropsType = {
+    profile: ProfilePropsType
+    isOwner: boolean
+    status: string
+    updateStatus: (value: string) => void
+    updatePhoto: (files: string) => void
+}
+
+export const Profile = (props: ProfileComponentPropsType) => {
+    const { updatePhoto, updateStatus, profile, isOwner, status } = props;
 
     return (
         <div className="content">

@@ -29,16 +29,18 @@ export const profileAPI = {
 };
 
 export type UpdateRequestType = {
-	fullName: string | undefined;
-	aboutMe: string | undefined;
-	lookingForAJob: string | undefined;
-	lookingForAJobDescription: string | undefined;
-	contacts: {
-		facebook: string;
-		twitter: string;
-		github: string;
-		youtube: string;
-	};
+	fullName: string;
+	aboutMe: string;
+	lookingForAJob: boolean;
+	lookingForAJobDescription: string;
+	contacts: UpdateContactsRequestType;
+};
+
+export type UpdateContactsRequestType = {
+	facebook: string;
+	twitter: string;
+	github: string;
+	youtube: string;
 };
 
 export type ProfilePhotosType = {

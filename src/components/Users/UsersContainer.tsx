@@ -11,7 +11,7 @@ import { Preloader } from "../Common/Preloader/Preloader";
 import { compose } from "redux";
 import { getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsersSelector } from "../../redux/reducers/selectors/user-selectors";
 
-class UsersContainer extends React.Component<any, mapStateToPropsType> {
+class UsersContainer extends React.Component<UsersPropsType, mapStateToPropsType> {
     componentDidMount() {
         this.props.getUsers(this.props.currentPage, this.props.pageSize);
     }
