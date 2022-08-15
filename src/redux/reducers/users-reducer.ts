@@ -1,5 +1,5 @@
 import { UserType } from '../../components/Users/UsersContainer';
-import { usersAPI } from '../../api/api';
+import { usersAPI } from '../../api/usersAPI';
 import { Dispatch } from 'redux';
 
 // Const action

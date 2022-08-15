@@ -1,8 +1,8 @@
 // Const action
 import { Dispatch } from 'redux';
-import { authAPI } from '../../api/api';
 import { LoginPropsType } from '../../components/Login/Login';
 import { FormikValues } from 'formik';
+import { authAPI } from '../../api/authAPI';
 
 const SET_USER_DATA = 'AUTH/SET_USER_DATA';
 const SET_AUTH_CAPTCHA = 'AUTH/SET_AUTH_CAPTCHA';

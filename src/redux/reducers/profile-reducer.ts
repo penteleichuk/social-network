@@ -1,11 +1,10 @@
+import { Dispatch } from 'redux';
 import {
+	UpdateRequestType,
+	ProfilePhotosType,
 	ProfilePropsType,
 	profileAPI,
-	ProfilePhotosType,
-	UpdateRequestType,
-	usersAPI,
-} from '../../api/api';
-import { Dispatch } from 'redux';
+} from '../../api/profileAPI';
 import { PostType } from '../../components/Profile/MyPosts/Post/Post';
 
 // Const action
@@ -96,7 +95,7 @@ export const getProfile =
 	(userId: number = 2) =>
 	async (dispatch: Dispatch) => {
 		try {
-			const res = await usersAPI.getProfile(userId);
+			const res = await profileAPI.getProfile(userId);
 			dispatch(setUserProfile(res.data));
 		} catch (e) {}
 	};

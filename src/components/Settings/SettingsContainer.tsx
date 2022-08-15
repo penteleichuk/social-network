@@ -4,7 +4,7 @@ import { Settings } from "./Settings";
 import { compose } from "redux";
 import { connect } from 'react-redux';
 import { getProfile, updateProfile } from "../../redux/reducers/profile-reducer";
-import { ProfilePropsType, UpdateRequestType } from "../../api/api";
+import { ProfilePropsType, UpdateRequestType } from "../../api/profileAPI";
 
 class SettingsContainer extends React.Component<any, mapStateToPropsType> {
 

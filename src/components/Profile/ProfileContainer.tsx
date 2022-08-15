@@ -6,7 +6,7 @@ import { AppStateType } from "../../redux/redux-store";
 import { withRouter } from "../../hoc/withRouter";
 import { compose } from "redux";
 import { useNavigate } from "react-router-dom";
-import { ProfilePropsType } from "../../api/api";
+import { ProfilePropsType } from "../../api/profileAPI";
 
 const ProfileContainer = (props: any) => {
     const userId = (props.match) ? props.match.params.userId : props.userId;

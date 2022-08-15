@@ -4,7 +4,7 @@ import { addPostActionCreator } from "../../../redux/reducers/profile-reducer";
 import { MyPosts } from "./MyPosts";
 import { AppStateType } from "../../../redux/redux-store";
 import { PostType } from "./Post/Post";
-import { ProfilePropsType } from "../../../api/api";
+import { ProfilePropsType } from "../../../api/profileAPI";
 
 export type MyPostPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
