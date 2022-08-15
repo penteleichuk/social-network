@@ -2,7 +2,7 @@
   "name": "samurai",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://vasyok28.github.io/samurai",
+  "homepage": "https://vasyok28.github.io/Social-network",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
