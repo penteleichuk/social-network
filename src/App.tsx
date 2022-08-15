@@ -46,10 +46,13 @@ class App extends React.Component<mapStateToPropsType & mapDispatchToPropsType, 
     }
 }
 
+// type mapDispatchToPropsType = {
+//     initializeApp: () => void
+// }
+
 type mapStateToPropsType = {
     initialized: boolean
 };
-
 type mapDispatchToPropsType = {
     initializeApp: () => void
 }
