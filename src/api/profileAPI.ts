@@ -34,35 +34,35 @@ export type UpdateRequestType = {
 	lookingForAJob: string | undefined;
 	lookingForAJobDescription: string | undefined;
 	contacts: {
-		facebook: string | undefined;
-		twitter: string | undefined;
-		github: string | undefined;
-		youtube: string | undefined;
+		facebook: string;
+		twitter: string;
+		github: string;
+		youtube: string;
 	};
 };
 
 export type ProfilePhotosType = {
-	small: string | null;
-	large: string | null | undefined;
+	small: string;
+	large: string;
 };
 
-type ProfileContactsType = {
-	facebook: string | null | undefined;
-	website: string | null | undefined;
-	vk: string | null | undefined;
-	twitter: string | null | undefined;
-	instagram: string | null | undefined;
-	youtube: string | null | undefined;
-	github: string | null | undefined;
-	mainLink: string | null | undefined;
+export type ProfileContactsType = {
+	facebook: string;
+	website: string;
+	vk: string;
+	twitter: string;
+	instagram: string;
+	youtube: string;
+	github: string;
+	mainLink: string;
 };
 
 export type ProfilePropsType = {
-	aboutMe?: string | null | undefined;
-	contacts?: ProfileContactsType;
-	lookingForAJob?: boolean;
-	lookingForAJobDescription?: string | undefined;
-	fullName?: string | undefined;
-	userId?: number;
-	photos?: ProfilePhotosType;
-} | null;
+	aboutMe: string;
+	contacts: ProfileContactsType;
+	lookingForAJob: boolean;
+	lookingForAJobDescription: string;
+	fullName: string;
+	userId: number;
+	photos: ProfilePhotosType;
+};

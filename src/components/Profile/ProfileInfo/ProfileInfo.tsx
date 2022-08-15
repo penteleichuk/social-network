@@ -7,10 +7,19 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ProfilePassport } from "./ProfilePassport";
 import authorImg from "../../../assets/images/author.jpeg";
+import { ProfilePropsType } from '../../../api/profileAPI';
 import styles from './ProfileInfo.module.css';
 
-export const ProfileInfo = (props: any) => {
-    const { updatePhoto, isOwner, profile, status, updateStatus } = props;
+type ProfileInfoPropsType = {
+    profile: ProfilePropsType
+    isOwner: boolean
+    status: string
+    updateStatus: (value: string) => void
+    updatePhoto: (files: string) => void
+}
+
+export const ProfileInfo = (props: ProfileInfoPropsType) => {
+    const { profile, isOwner, status, updatePhoto, updateStatus } = props;
     const dispatch = useDispatch();
 
     const refImg = useRef<HTMLInputElement>(null);
@@ -20,17 +29,17 @@ export const ProfileInfo = (props: any) => {
     }
 
     const uploadPhotoHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        const files = e.target.files && e.target.files[0];
+        const files: File | null = e.target.files && e.target.files[0];
         if (files) {
-            dispatch(updatePhoto(files))
+            dispatch(updatePhoto(files.name))
         }
     }
 
     return (
         <div className={styles.profile} >
             <div className={styles.wrapper}>
-                <div className={styles.photo}>
 
+                <div className={styles.photo}>
                     <img src={profile.photos.small || authorImg} alt="" />
                     {isOwner && <input
                         ref={refImg}
@@ -45,8 +54,14 @@ export const ProfileInfo = (props: any) => {
 
                     <ProfileStatus isOwner={isOwner} status={status} updateStatus={updateStatus} />
                 </div>
+
                 <div className={styles.descrition}>
-                    <ProfilePassport profile={profile} />
+                    <ProfilePassport
+                        fullName={profile.fullName}
+                        aboutMe={profile.aboutMe}
+                        lookingForAJob={profile.lookingForAJob}
+                        lookingForAJobDescription={profile.lookingForAJobDescription}
+                        contacts={profile.contacts} />
                 </div>
             </div>
         </div>

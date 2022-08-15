@@ -1,25 +1,37 @@
+import { ProfileContactsType } from '../../../api/profileAPI';
 import style from './ProfileInfo.module.css';
 
 type ProfilePassportItemProps = {
 	title: string
-	value: string | null
+	value: string | boolean
 	isTrue?: string
 	isFalse?: string
 }
 
-export const ProfilePassport = (props: any) => {
+type ProfilePassportPropsType = {
+	fullName: string
+	aboutMe: string
+	lookingForAJob: boolean
+	lookingForAJobDescription: string
+	contacts: ProfileContactsType
+}
+
+export const ProfilePassport = (props: ProfilePassportPropsType) => {
+	const { fullName, aboutMe, lookingForAJob, lookingForAJobDescription, contacts } = { ...props };
+
 	return <div className={style.info}>
 		<div>
-			<ProfilePassportItem title={'Full Name'} value={props.profile.fullName} isTrue={props.profile.fullName} isFalse={"-"} />
-			<ProfilePassportItem title={'About Me'} value={props.profile.aboutMe} isTrue={props.profile.aboutMe} isFalse={"-"} />
-			<ProfilePassportItem title={'Looking for a job'} value={props.profile.lookingForAJob} isTrue={'Yes'} isFalse={"No"} />
-			<ProfilePassportItem title={'Description'} value={props.profile.lookingForAJobDescription} isTrue={props.profile.lookingForAJobDescription} isFalse={"-"} />
+			<ProfilePassportItem title={'Full Name'} value={fullName} isTrue={fullName} isFalse={"-"} />
+			<ProfilePassportItem title={'About Me'} value={aboutMe} isTrue={aboutMe} isFalse={"-"} />
+			<ProfilePassportItem title={'Looking for a job'} value={lookingForAJob} isTrue={'Yes'} isFalse={"No"} />
+			<ProfilePassportItem title={'Description'} value={lookingForAJobDescription} isTrue={lookingForAJobDescription} isFalse={"-"} />
 		</div>
+
 		<div>
-			<ProfilePassportContacts title={'Facebook'} value={props.profile.contacts.facebook} />
-			<ProfilePassportContacts title={'Twitter'} value={props.profile.contacts.twitter} />
-			<ProfilePassportContacts title={'Github'} value={props.profile.contacts.github} />
-			<ProfilePassportContacts title={'Youtube'} value={props.profile.contacts.youtube} />
+			<ProfilePassportContacts title={'Facebook'} value={contacts.facebook} />
+			<ProfilePassportContacts title={'Twitter'} value={contacts.twitter} />
+			<ProfilePassportContacts title={'Github'} value={contacts.github} />
+			<ProfilePassportContacts title={'Youtube'} value={contacts.youtube} />
 		</div>
 	</div>
 }

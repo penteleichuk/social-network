@@ -19,7 +19,23 @@ const initialState = {
 		{ id: 1, message: 'Hi, how are you ?', likesCount: 20 },
 		{ id: 2, message: "It's my first post", likesCount: 12 },
 	] as Array<PostType>,
-	profile: null as ProfilePropsType,
+	profile: {
+		aboutMe: '',
+		contacts: {
+			facebook: '',
+			twitter: '',
+			github: '',
+			youtube: '',
+		},
+		lookingForAJob: false,
+		lookingForAJobDescription: '',
+		fullName: '',
+		userId: 1,
+		photos: {
+			small: '',
+			large: '',
+		},
+	} as ProfilePropsType,
 	status: '',
 };
 
