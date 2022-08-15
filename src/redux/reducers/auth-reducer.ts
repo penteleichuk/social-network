@@ -7,42 +7,16 @@ import { FormikValues } from 'formik';
 const SET_USER_DATA = 'AUTH/SET_USER_DATA';
 const SET_AUTH_CAPTCHA = 'AUTH/SET_AUTH_CAPTCHA';
 
-// Init
-export type initialStateType = {
-	userId: number | null;
-	email: string | null;
-	login: string | null;
-	isFetching: boolean;
-	isAuth: boolean;
-	captcha: string | null;
-};
-const initialState: initialStateType = {
-	userId: null,
-	email: null,
-	login: null,
+const initialState = {
+	userId: null as number | null,
+	email: null as string | null,
+	login: null as string | null,
 	isFetching: false,
 	isAuth: false,
-	captcha: null,
+	captcha: null as string | null,
 };
 
-export type SetAuthUserDataActionType = {
-	type: typeof SET_USER_DATA;
-	payload: AuthUserData;
-};
-
-export type SetAuthCaptcha = {
-	type: typeof SET_AUTH_CAPTCHA;
-	url: string;
-};
-
-export type AuthUserData = {
-	userId: number;
-	email: string;
-	login: string;
-	isAuth: boolean;
-};
-
-type ActionsType = SetAuthUserDataActionType | SetAuthCaptcha;
+type initialStateType = typeof initialState;
 
 export const authReducer = (
 	state: initialStateType = initialState,
@@ -67,19 +41,24 @@ export const authReducer = (
 	}
 };
 
+type SetAuthUserDataActionType = ReturnType<typeof setAuthUserData>;
+type SetAuthCaptchaActionType = ReturnType<typeof setAuthCaptcha>;
+type ActionsType = SetAuthUserDataActionType | SetAuthCaptchaActionType;
+
 // Action creator
 export const setAuthUserData = (
 	userId: number,
 	email: string,
 	login: string,
 	isAuth: boolean
-): SetAuthUserDataActionType => ({
-	type: SET_USER_DATA,
-	payload: { userId, email, login, isAuth },
-});
+) =>
+	({
+		type: SET_USER_DATA,
+		payload: { userId, email, login, isAuth },
+	} as const);
 
-export const setAuthCaptcha = (url: string): SetAuthCaptcha => {
-	return { type: SET_AUTH_CAPTCHA, url };
+export const setAuthCaptcha = (url: string) => {
+	return { type: SET_AUTH_CAPTCHA, url } as const;
 };
 
 // THUNK

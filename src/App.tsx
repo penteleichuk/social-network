@@ -61,7 +61,7 @@ const mapStateToProps = (state: AppStateType): { initialized: boolean } => {
     }
 }
 
-export default compose<any>(
+export default compose<React.ComponentType>(
     connect(mapStateToProps, mapDispatchToProps),
     withRouter,
 )(App)

@@ -27,6 +27,6 @@ const mapStateToProps = (state: AppStateType): HeaderPropsType => {
     }
 }
 
-export default compose(
+export default compose<React.ComponentType>(
     connect(mapStateToProps, mapDispatchToProps)
-)<any>(HeaderContainer)
+)(HeaderContainer)

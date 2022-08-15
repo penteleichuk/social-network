@@ -1,11 +1,10 @@
 import React from "react";
 import { AppStateType } from "../../redux/redux-store";
 import { Settings } from "./Settings";
-import { ProfilePropsType } from "../Profile/ProfileContainer";
 import { compose } from "redux";
 import { connect } from 'react-redux';
 import { getProfile, updateProfile } from "../../redux/reducers/profile-reducer";
-import { UpdateRequestType } from "../../api/api";
+import { ProfilePropsType, UpdateRequestType } from "../../api/api";
 
 class SettingsContainer extends React.Component<any, mapStateToPropsType> {
 
@@ -41,4 +40,4 @@ const mapDispatchToProps: mapDispatchToPropsType = {
 };
 
 export type SettingsPropsType = mapDispatchToPropsType & mapStateToPropsType;
-export default compose<any>(connect(mapStateToProps, mapDispatchToProps))(SettingsContainer);
+export default compose<React.ComponentType>(connect(mapStateToProps, mapDispatchToProps))(SettingsContainer);

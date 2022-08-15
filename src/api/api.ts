@@ -89,3 +89,27 @@ export type UpdateRequestType = {
 		youtube: string | undefined;
 	};
 };
+
+export type ProfilePhotosType = {
+	small: string | null;
+	large: string | null | undefined;
+};
+type ProfileContactsType = {
+	facebook: string | null | undefined;
+	website: string | null | undefined;
+	vk: string | null | undefined;
+	twitter: string | null | undefined;
+	instagram: string | null | undefined;
+	youtube: string | null | undefined;
+	github: string | null | undefined;
+	mainLink: string | null | undefined;
+};
+export type ProfilePropsType = {
+	aboutMe?: string | null | undefined;
+	contacts?: ProfileContactsType;
+	lookingForAJob?: boolean;
+	lookingForAJobDescription?: string | undefined;
+	fullName?: string | undefined;
+	userId?: number;
+	photos?: ProfilePhotosType;
+} | null;

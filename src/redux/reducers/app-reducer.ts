@@ -2,20 +2,11 @@ import { getAuthUserData } from './auth-reducer';
 
 const SET_INITIALIZED = 'APP/SET_INITIALIZED';
 
-type SetInitialActionType = {
-	type: typeof SET_INITIALIZED;
-	initialized: boolean;
-};
-
-type ActionType = SetInitialActionType;
-
-type initialStateType = {
-	initialized: boolean;
-};
-
 const initialState = {
 	initialized: false,
 };
+
+type initialStateType = typeof initialState;
 
 export const appReducer = (
 	state: initialStateType = initialState,
@@ -35,10 +26,11 @@ export const appReducer = (
 	}
 };
 
-export const setInitializeApp = (
-	initialized: boolean
-): SetInitialActionType => {
-	return { type: SET_INITIALIZED, initialized };
+type SetInitialActionType = ReturnType<typeof setInitializeApp>;
+type ActionType = SetInitialActionType;
+
+export const setInitializeApp = (initialized: boolean) => {
+	return { type: SET_INITIALIZED, initialized } as const;
 };
 
 export const initializeApp = () => async (dispatch: any) => {

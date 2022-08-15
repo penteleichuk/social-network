@@ -2,8 +2,7 @@ import { connect } from "react-redux";
 import {
     follow,
     requestUsers,
-    initialStateType,
-    setCurrentPage, unFollow,
+    setCurrentPage, unFollow, UsersType,
 } from "../../redux/reducers/users-reducer";
 import { AppStateType } from "../../redux/redux-store";
 import React from "react";
@@ -42,7 +41,7 @@ type mapDispatchToPropsType = {
     setCurrentPage: (pageNumber: number) => void
     getUsers: (currentPage: number, pageSize: number) => void
 }
-type mapStateToPropsType = initialStateType
+type mapStateToPropsType = UsersType;
 
 // User type
 type UserLocation = {
@@ -81,4 +80,4 @@ const mapDispatchToProps: mapDispatchToPropsType = {
     follow, unFollow, setCurrentPage, getUsers: requestUsers
 };
 
-export default compose<any>(connect(mapStateToProps, mapDispatchToProps))(UsersContainer);
+export default compose<React.ComponentType>(connect(mapStateToProps, mapDispatchToProps))(UsersContainer);

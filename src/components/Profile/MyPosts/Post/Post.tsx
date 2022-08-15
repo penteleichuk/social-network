@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { ProfilePropsType } from '../../ProfileContainer';
 import authorImg from '../../../../assets/images/author.jpeg'
+import { ProfilePropsType } from '../../../../api/api';
 import styles from './Post.module.css'
 
 export type PostType = {
